@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+
+  <!-- Background: navy rounded square -->
+  <rect width="64" height="64" rx="10" fill="#0F1B2D"/>
+
+  <!-- Gold thin top line -->
+  <line x1="10" y1="9" x2="54" y2="9" stroke="#C9A046" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- SA text -->
+  <text
+    x="32" y="43"
+    text-anchor="middle"
+    font-family="Georgia, 'Palatino Linotype', serif"
+    font-size="28"
+    font-weight="700"
+    fill="#ffffff"
+    letter-spacing="-1">SA</text>
+
+  <!-- Gold thin bottom line -->
+  <line x1="10" y1="52" x2="54" y2="52" stroke="#C9A046" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Gold dots -->
+  <circle cx="7"  cy="52" r="1.8" fill="#C9A046"/>
+  <circle cx="57" cy="52" r="1.8" fill="#C9A046"/>
+
+</svg>
