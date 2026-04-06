@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- חסימת סריקה של גוגל ומנועי חיפוש -->
+<meta name="robots" content="noindex, nofollow"/>
+<title>שלום יאיר עמר | משרד עורכי דין</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:      #0F1B2D;
+    --navy-deep: #0D1520;
+    --gold:      #C9A046;
+    --gold-dark: #A87A20;
+    --gold-light:#E8D5A3;
+    --gold-dim:  rgba(201,160,70,0.10);
+    --bg-white:  #fdfdfd;
+    --bg-soft:   #f7f5f2;
+    --bg-light:  #f0eeea;
+    --text-head: #0F1B2D;
+    --text-body: #2c3e50;
+    --text-muted:#7a8a9a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .serif { font-family: 'Noto Serif', serif; }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+
+  /* ── Gold gradient text ── */
+  .gold-text {
+    background: linear-gradient(135deg, #A87A20 0%, #C9A046 50%, #A87A20 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Navigation ── */
+  .nav-shell {
+    background: rgba(253,253,253,0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(201,160,70,0.20);
+    box-shadow: 0 1px 24px rgba(15,27,45,0.07);
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    transition: color 0.25s;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; right: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover { color: var(--navy); }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link.active { color: var(--navy); }
+  .nav-link.active::after { width: 100%; }
+
+  /* ── Logo block ── */
+  .logo-name { font-family: 'Noto Serif', serif; letter-spacing: 0.04em; font-size: 1.05rem; line-height: 1.2; color: var(--navy); }
+  .logo-sub   { font-family: 'Manrope', sans-serif; letter-spacing: 0.18em; font-size: 0.62rem; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ── Buttons ── */
+  .btn-gold {
+    background: linear-gradient(135deg, #A87A20 0%, #C9A046 45%, #E8D5A3 70%, #C9A046 100%);
+    color: var(--navy-deep);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    box-shadow: 0 4px 20px rgba(201,160,70,0.30);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .btn-gold:hover {
+    box-shadow: 0 8px 36px rgba(201,160,70,0.50);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(201,160,70,0.6);
+    color: var(--gold-dark);
+    letter-spacing: 0.07em;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .btn-outline:hover {
+    background: rgba(201,160,70,0.08);
+    border-color: var(--gold);
+  }
+
+  /* ── Hero ── */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 55% 55% at 10% 90%, rgba(201,160,70,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 45% at 90% 10%, rgba(15,27,45,0.04) 0%, transparent 55%),
+      var(--bg-white);
+  }
+
+  /* SA watermark */
+  .sa-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Serif', serif;
+    font-size: clamp(12rem, 25vw, 22rem);
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(15,27,45,0.020);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+
+  /* Photo frame */
+  .photo-frame {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(15,27,45,0.10);
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(15,27,45,0.55) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Corner accents on photo */
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 28px; height: 28px;
+    z-index: 2;
+  }
+  .corner-tl { top: 12px; right: 12px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+  .corner-br { bottom: 12px; left: 12px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+
+  /* ── Gold divider ── */
+  .gold-hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,160,70,0.6), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── Stats bar  (keep navy – premium visual break) ── */
+  .stats-bar {
+    background: var(--navy);
+    border-top: 1px solid rgba(201,160,70,0.20);
+  }
+  .stat-num {
+    font-family: 'Noto Serif', serif;
+    background: linear-gradient(135deg, #C9A046, #E8D5A3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 600;
+  }
+
+  /* ── About image frame ── */
+  .about-img-wrap { position: relative; }
+
+  /* ── Practice cards ── */
+  .practice-card {
+    background: #fff;
+    border: 1px solid rgba(15,27,45,0.07);
+    border-radius: 6px;
+    box-shadow: 0 2px 20px rgba(15,27,45,0.06);
+    transition: background 0.4s, border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+  }
+  .practice-card:hover {
+    background: #fff;
+    border-color: rgba(201,160,70,0.40);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(15,27,45,0.12);
+  }
+  .practice-icon {
+    color: #b0b8c5;
+    transition: color 0.4s;
+  }
+  .practice-card:hover .practice-icon { color: var(--gold); }
+  .practice-num {
+    font-family: 'Noto Serif', serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: rgba(201,160,70,0.10);
+    font-weight: 700;
+  }
+
+  /* ── Team section ── */
+  .team-photo {
+    filter: grayscale(15%) contrast(1.05);
+    transition: filter 1.2s ease;
+  }
+  .team-photo:hover { filter: grayscale(0%) contrast(1); }
+
+  /* ── Testimonial ── */
+  .testimonial-card {
+    background: #fff;
+    border: 1px solid rgba(201,160,70,0.18);
+    border-radius: 6px;
+    box-shadow: 0 4px 30px rgba(15,27,45,0.06);
+  }
+  .quote-giant {
+    font-family: 'Noto Serif', serif;
+    font-size: 7rem;
+    line-height: 0.8;
+    color: rgba(201,160,70,0.18);
+    user-select: none;
+    display: block;
+  }
+
+  /* ── Blog ── */
+  .blog-card { border-radius: 6px; overflow: hidden; }
+  .blog-img-wrap { overflow: hidden; border-radius: 4px; }
+  .blog-img {
+    transition: transform 0.7s ease;
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .blog-card:hover .blog-img { transform: scale(1.07); }
+
+  /* ── Contact form ── */
+  .form-field {
+    background: #fff;
+    border: 1px solid rgba(15,27,45,0.12);
+    color: var(--text-head);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+  }
+  .form-field:focus {
+    outline: none;
+    border-color: rgba(201,160,70,0.55);
+    box-shadow: 0 0 0 3px rgba(201,160,70,0.10);
+  }
+  .form-field::placeholder { color: rgba(15,27,45,0.30); }
+
+  /* ── Footer (keep navy – premium contrast) ── */
+  .footer-bg {
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(201,160,70,0.15);
+  }
+
+  /* ── Scroll fade ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .delay-100 { transition-delay: 0.10s; }
+  .delay-200 { transition-delay: 0.20s; }
+  .delay-300 { transition-delay: 0.30s; }
+  .delay-400 { transition-delay: 0.40s; }
+
+  /* ── Vertical separator ── */
+  .v-sep { width: 1px; background: rgba(201,160,70,0.35); }
+
+  /* ── Map overlay ── */
+  .map-wrap { position: relative; }
+  .map-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,27,45,0.12);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-soft); }
+  ::-webkit-scrollbar-thumb { background: rgba(201,160,70,0.4); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- Skip link – נגישות מקלדת -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:right-2 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-bold"
+   style="background:#0F1B2D;color:#fff;">
+  דלג לתוכן הראשי
+</a>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<header>
+<nav class="nav-shell fixed top-0 w-full z-50" aria-label="ניווט ראשי">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between gap-8">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-4 flex-shrink-0">
+      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-9 w-auto"/>
+      <div class="hidden sm:block">
+        <div class="logo-name">שלום יאיר עמר</div>
+        <div class="logo-sub">Law Office</div>
+      </div>
+    </a>
+
+    <!-- Links -->
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about"        class="nav-link">אודות</a>
+      <a href="#practice"     class="nav-link">תחומי עיסוק</a>
+      <a href="#team"         class="nav-link">הצוות</a>
+      <a href="#testimonials" class="nav-link">המלצות</a>
+      <a href="#blog"         class="nav-link">בלוג</a>
+      <a href="#contact"      class="nav-link">צור קשר</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="#contact" class="btn-gold text-sm px-6 py-2.5 rounded flex-shrink-0 cursor-pointer">
+      תיאום ייעוץ
+    </a>
+  </div>
+</nav>
+</header>
+
+<main id="main-content">
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero-bg min-h-screen flex flex-col pt-20 relative overflow-hidden" id="top">
+
+  <!-- SA Monogram watermark -->
+  <div class="sa-watermark">SA</div>
+
+  <!-- Main content -->
+  <div class="flex-1 flex items-center relative z-10">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 w-full py-20
+                grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Text side -->
+      <div class="text-right space-y-8 order-2 lg:order-1">
+        <div class="section-label fade-up">משרד עורכי דין | Beer Sheva, Israel</div>
+
+        <h1 class="serif text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight fade-up delay-100"
+            style="color:var(--text-head);">
+          שלום יאיר עמר
+          <span class="block mt-3" style="font-family:'Manrope',sans-serif;letter-spacing:0.18em;font-size:0.9rem;text-transform:uppercase;color:var(--text-muted);font-weight:400;">
+            SHALOM YAIR AMAR &nbsp;|&nbsp; LAW OFFICE
+          </span>
+        </h1>
+
+        <div class="gold-hr w-20 fade-up delay-200"></div>
+
+        <p class="text-base md:text-lg leading-8 max-w-lg fade-up delay-200"
+           style="color:var(--text-body);font-weight:300;">
+          ייצוג משפטי בלתי מתפשר, שקיפות מלאה ומחויבות לתוצאות הטובות ביותר.
+          כל תיק מקבל מעטפת אישית ברמת דיוק של אומן.
+        </p>
+
+        <div class="flex gap-4 justify-end flex-wrap fade-up delay-300">
+          <a href="#contact" class="btn-gold text-sm px-9 py-3.5 rounded cursor-pointer">
+            תיאום ייעוץ משפטי
+          </a>
+          <a href="#practice" class="btn-outline text-sm px-9 py-3.5 rounded cursor-pointer">
+            תחומי התמחות
+          </a>
+        </div>
+
+        <!-- Contact quick-row -->
+        <div class="flex items-center gap-5 justify-end pt-4 fade-up delay-400"
+             style="color:var(--text-muted);font-size:0.8rem;letter-spacing:0.06em;">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold)">call</span>
+            054-246-4315
+          </span>
+          <span class="v-sep h-4"></span>
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold)">location_on</span>
+            באר שבע
+          </span>
+        </div>
+      </div>
+
+      <!-- Photo side -->
+      <div class="relative order-1 lg:order-2 flex justify-center">
+        <!-- Glow orb -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-96 h-96 rounded-full"
+               style="background:radial-gradient(circle,rgba(201,160,70,0.10),transparent 70%);filter:blur(50px);"></div>
+        </div>
+
+        <div class="photo-frame w-full max-w-sm relative fade-up delay-200">
+          <div class="corner-tl"></div>
+          <div class="corner-br"></div>
+          <img src="shalom.jpg"
+               alt="עורך הדין שלום יאיר עמר יושב ליד שולחן עבודה במשרדו, מאחוריו ספריית ספרי משפט ולוחית שם זהובה"
+               class="w-full aspect-[4/5] object-cover block" style="object-position:top center;"/>
+
+          <!-- Bottom overlay with name (stays dark — on top of photo) -->
+          <div class="absolute bottom-0 inset-x-0 z-10 px-6 py-5"
+               style="background:linear-gradient(0deg,rgba(13,21,32,0.88) 0%,transparent 100%);">
+            <div class="serif text-white font-semibold text-lg">עו״ד שלום יאיר עמר</div>
+            <div class="text-xs tracking-widest mt-0.5"
+                 style="letter-spacing:0.18em;color:rgba(255,255,255,0.45);">ATTORNEY AT LAW</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats bar – stays navy as premium contrast band -->
+  <div class="stats-bar w-full relative z-10">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-7
+                flex flex-wrap justify-around gap-6">
+      <div class="text-center">
+        <div class="stat-num text-4xl font-bold">15+</div>
+        <div class="text-xs tracking-widest mt-1"
+             style="color:rgba(255,255,255,0.40);letter-spacing:0.15em;">שנות ניסיון</div>
+      </div>
+      <div class="v-sep hidden md:block"></div>
+      <div class="text-center">
+        <div class="stat-num text-4xl font-bold">1,200+</div>
+        <div class="text-xs tracking-widest mt-1"
+             style="color:rgba(255,255,255,0.40);letter-spacing:0.15em;">תיקים שנסגרו</div>
+      </div>
+      <div class="v-sep hidden md:block"></div>
+      <div class="text-center">
+        <div class="stat-num text-4xl font-bold">100%</div>
+        <div class="text-xs tracking-widest mt-1"
+             style="color:rgba(255,255,255,0.40);letter-spacing:0.15em;">מחויבות אישית</div>
+      </div>
+      <div class="v-sep hidden md:block"></div>
+      <div class="text-center">
+        <div class="stat-num text-4xl font-bold">3</div>
+        <div class="text-xs tracking-widest mt-1"
+             style="color:rgba(255,255,255,0.40);letter-spacing:0.15em;">תחומי ליבה</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section class="py-32 relative overflow-hidden" id="about" style="background:var(--bg-soft);">
+
+  <!-- Subtle gold accent -->
+  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-3/4 pointer-events-none"
+       style="background:radial-gradient(ellipse at left,rgba(201,160,70,0.07),transparent 70%);"></div>
+
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row gap-20 items-center">
+
+      <!-- Image -->
+      <div class="w-full lg:w-5/12 about-img-wrap fade-up">
+        <div class="relative z-10 overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAJJax1EH2-1kHxXWH1tsIzpodrGXuST_xh614MmIlFglqJr0J7GNJe7VGwKClGgVmbdes266eBk2h2FSF__zwC-cY7RXKoqJ9XeBQwZcopNnpFmhlh0tSum3kwQ5DXbWv7bv4iQEigV7dey3QwW360Dlhw-vJm4x0u1pBDGfsKpS8q2GrEhmXsUS5YWGEoTu9WIjFl1LliRpHlVO_XC3M-reDthpYEGOEeuwxfIqRw2m3wgX69vf1k5-BJt8EhPwFjNupmsesw8kT"
+               alt="ספריית ספרי משפט עם כריכות עור בגוון חום, מדפים מרצפה לתקרה בתאורה חמה"
+               class="w-full object-cover" style="aspect-ratio:5/4;"/>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="w-full lg:w-7/12 text-right space-y-5 fade-up delay-200">
+        <div class="section-label">חזון וערכים</div>
+        <h2 class="serif text-4xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
+          המצוינות<br/>
+          <span class="gold-text">היא בפרטים הקטנים</span>
+        </h2>
+        <div class="gold-hr w-16"></div>
+        <p class="text-base leading-8" style="color:var(--text-body);font-weight:300;">
+          משרדנו חורט על דגלו את השילוב שבין מסורת משפטית לבין חדשנות עסקית.
+          אנו רואים בכל לקוח שותף לדרך, ומעניקים מעטפת מקצועית רחבה המבוססת על
+          אמון, יושרה ויצירתיות משפטית ייחודית.
+        </p>
+        <p class="text-base leading-8" style="color:var(--text-body);font-weight:300;">
+          כל תיק מנוהל עם מחויבות אישית מלאה — מהפגישה הראשונה ועד לסגירת
+          ההליך. האמונה שלנו היא פשוטה: הצלחת הלקוח היא הצלחתנו.
+        </p>
+
+        <!-- Stats mini -->
+        <div class="grid grid-cols-2 pt-6 border-t"
+             style="border-color:rgba(201,160,70,0.20);">
+          <div class="py-4 pl-8" style="border-left:1px solid rgba(15,27,45,0.08);">
+            <div class="stat-num text-5xl font-bold">15+</div>
+            <div class="text-xs mt-2 tracking-widest uppercase" style="color:var(--text-muted);letter-spacing:0.15em;">שנות ניסיון</div>
+          </div>
+          <div class="py-4 pr-8">
+            <div class="stat-num text-5xl font-bold">1.2K</div>
+            <div class="text-xs mt-2 tracking-widest uppercase" style="color:var(--text-muted);letter-spacing:0.15em;">תיקים שנסגרו</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRACTICE AREAS
+══════════════════════════════════════════ -->
+<section class="py-32" id="practice" style="background:var(--bg-white);">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14">
+
+    <div class="text-center mb-20 fade-up">
+      <div class="section-label mb-4">Expertise</div>
+      <h2 class="serif text-4xl md:text-5xl font-bold" style="color:var(--text-head);">תחומי התמחות</h2>
+      <div class="gold-hr w-16 mt-5"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+      <!-- Real Estate -->
+      <div class="practice-card p-10 cursor-default fade-up">
+        <div class="practice-num mb-2">01</div>
+        <span class="material-symbols-outlined text-4xl practice-icon mb-5 block">domain</span>
+        <h3 class="serif text-2xl font-bold mb-4" style="color:var(--text-head);">נדל״ן ומקרקעין</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);font-weight:400;">
+          ליווי עסקאות מכר, רכישה, התחדשות עירונית ותכנון ובנייה ברמה המקצועית הגבוהה ביותר. הגנה מלאה על האינטרסים שלכם.
+        </p>
+        <div class="mt-8 flex justify-end">
+          <span class="text-xs tracking-widest" style="color:rgba(201,160,70,0.6);letter-spacing:0.2em;">Real Estate Law</span>
+        </div>
+      </div>
+
+      <!-- Commercial -->
+      <div class="practice-card p-10 cursor-default fade-up delay-100">
+        <div class="practice-num mb-2">02</div>
+        <span class="material-symbols-outlined text-4xl practice-icon mb-5 block">business_center</span>
+        <h3 class="serif text-2xl font-bold mb-4" style="color:var(--text-head);">משפט מסחרי</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);font-weight:400;">
+          ייעוץ שוטף לחברות, עריכת חוזים בינלאומיים, ליווי מיזמים וסטארטאפים החל משלב ההקמה ועד לסבבי גיוס הון.
+        </p>
+        <div class="mt-8 flex justify-end">
+          <span class="text-xs tracking-widest" style="color:rgba(201,160,70,0.6);letter-spacing:0.2em;">Commercial Law</span>
+        </div>
+      </div>
+
+      <!-- Litigation -->
+      <div class="practice-card p-10 cursor-default fade-up delay-200">
+        <div class="practice-num mb-2">03</div>
+        <span class="material-symbols-outlined text-4xl practice-icon mb-5 block">gavel</span>
+        <h3 class="serif text-2xl font-bold mb-4" style="color:var(--text-head);">ליטיגציה</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);font-weight:400;">
+          ייצוג תקיף ומנוסה בבתי משפט בכל הערכאות — סכסוכים אזרחיים ומסחריים מורכבים עם גישה אסטרטגית מוכחת.
+        </p>
+        <div class="mt-8 flex justify-end">
+          <span class="text-xs tracking-widest" style="color:rgba(201,160,70,0.6);letter-spacing:0.2em;">Civil Litigation</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════ -->
+<section class="py-32 overflow-hidden" id="team" style="background:var(--bg-soft);">
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+
+      <!-- Photo -->
+      <div class="w-full lg:w-5/12 fade-up">
+        <div class="relative overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
+          <img src="shalom1.jpg"
+               alt="פורטרט מקצועי של עורך הדין שלום יאיר עמר לבוש חולצה לבנה ועניבה כהה"
+               class="team-photo w-full block" style="aspect-ratio:4/5;object-fit:cover;object-position:top center;mix-blend-mode:multiply;"/>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="w-full lg:w-7/12 text-right space-y-5 fade-up delay-200">
+        <div class="section-label">הצוות</div>
+        <h2 class="serif text-4xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
+          עו״ד שלום<br/>
+          <span class="gold-text">יאיר עמר</span>
+        </h2>
+        <div class="gold-hr w-16"></div>
+
+        <p class="text-base leading-8" style="color:var(--text-body);font-weight:300;">
+          בוגר הפקולטה למשפטים ובעל ניסיון עשיר בניהול תיקים אסטרטגיים.
+          מאמין שכל לקוח ראוי לייצוג שרואה את התמונה הגדולה מבלי להחמיץ
+          אף פרט קטן.
+        </p>
+        <p class="text-base leading-8" style="color:var(--text-body);font-weight:300;">
+          חבר בלשכת עורכי הדין ומלווה באופן אישי כל תיק שנכנס בשערי המשרד.
+          המשימה היא להעניק שקט נפשי וביטחון משפטי בסביבה דינמית ומשתנה.
+        </p>
+
+        <!-- Quote -->
+        <div class="pt-6 pr-6 text-right" style="border-right:2px solid rgba(201,160,70,0.5);">
+          <p class="serif italic text-lg leading-relaxed" style="color:var(--text-head);font-weight:400;">
+            "הצדק אינו רק יעד — הוא הדרך בה אנו בוחרים ללכת בכל יום."
+          </p>
+          <div class="text-xs mt-3 tracking-widest" style="color:var(--gold-dark);letter-spacing:0.18em;">
+            — שלום יאיר עמר
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="flex flex-wrap gap-3 justify-end pt-2">
+          <span class="text-xs px-4 py-2 rounded"
+                style="border:1px solid rgba(201,160,70,0.30);color:var(--text-muted);letter-spacing:0.1em;">
+            חבר לשכת עורכי הדין
+          </span>
+          <span class="text-xs px-4 py-2 rounded"
+                style="border:1px solid rgba(201,160,70,0.30);color:var(--text-muted);letter-spacing:0.1em;">
+            משפט אזרחי ומסחרי
+          </span>
+          <span class="text-xs px-4 py-2 rounded"
+                style="border:1px solid rgba(201,160,70,0.30);color:var(--text-muted);letter-spacing:0.1em;">
+            נדל״ן ומקרקעין
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="py-32" id="testimonials" style="background:var(--bg-light);">
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center mb-16 fade-up">
+      <div class="section-label mb-4">Testimonials</div>
+      <h2 class="serif text-4xl md:text-5xl font-bold" style="color:var(--text-head);">לקוחות ממליצים</h2>
+      <div class="gold-hr w-16 mt-5"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Card 1 -->
+      <div class="testimonial-card p-10 fade-up">
+        <span class="quote-giant">"</span>
+        <p class="serif text-xl font-light italic leading-9 mt-2" style="color:var(--text-head);">
+          הליווי של עו"ד עמר היה מקצועי, אדיב ומדויק. הצליח לפתור סכסוך נדל"ני
+          מורכב תוך זמן קצר ובתוצאה שעלתה על כל הציפיות שלנו. ממליץ בחום רב.
+        </p>
+        <div class="mt-8 flex items-center gap-4 flex-row-reverse">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center serif font-bold text-sm"
+               style="background:rgba(201,160,70,0.12);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.30);">
+            א
+          </div>
+          <div class="text-right">
+            <div class="font-semibold" style="color:var(--text-head);">אבי לוי</div>
+            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">מנכ״ל קבוצת לוי השקעות</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="testimonial-card p-10 fade-up delay-100">
+        <span class="quote-giant">"</span>
+        <p class="serif text-xl font-light italic leading-9 mt-2" style="color:var(--text-head);">
+          פניתי למשרד בעניין סכסוך עסקי מורכב ונקלעתי לידיים של אנשי מקצוע
+          אמיתיים. הגישה האסטרטגית, הזמינות המלאה והתוצאות — כולם מהרמה הגבוהה ביותר.
+        </p>
+        <div class="mt-8 flex items-center gap-4 flex-row-reverse">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center serif font-bold text-sm"
+               style="background:rgba(201,160,70,0.12);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.30);">
+            ר
+          </div>
+          <div class="text-right">
+            <div class="font-semibold" style="color:var(--text-head);">רחל כהן</div>
+            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">בעלת עסק, תל אביב</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BLOG
+══════════════════════════════════════════ -->
+<section class="py-32" id="blog" style="background:var(--bg-white);">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14">
+
+    <div class="flex items-end justify-between mb-16 fade-up">
+      <a href="#" class="btn-outline text-xs px-5 py-2.5 rounded">כל המאמרים ←</a>
+      <div class="text-right">
+        <div class="section-label mb-3">Insights</div>
+        <h2 class="serif text-4xl md:text-5xl font-bold" style="color:var(--text-head);">עדכונים משפטיים</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Post 1 -->
+      <article class="blog-card cursor-pointer group fade-up">
+        <div class="blog-img-wrap aspect-video mb-6">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzgwRdNQPExxLI7OuWyK4UZRiexW2bD68TluG7ocSNpJR2JCdfipByVoZa5pEvwbl-xh03r69uO4uN72CmF5dinb2U8JXwYxdShW2WGmhMb6Mihr2USpAixpt0WHJuiN22K8v_o6ZOXLWK-GLVTNgGiP7Nrzg5CmirGt51NC2prFJvKP_j5EHld_NEgt61Yb_yATdDJzFHIZMn0-Bji5KcNLUCS0lJt0vfd3DXAjer9uqY_FIfiyLVRCQecUI_rWtuX0ax6ydmo61a"
+               alt="בניין מגורים מודרני המשתקף בשמי שקיעה כתומים-כחולים" class="blog-img"/>
+        </div>
+        <div class="text-right space-y-2 px-1">
+          <div class="flex items-center gap-3 justify-end text-xs"
+               style="color:var(--gold-dark);letter-spacing:0.18em;">
+            <span>12.04.24</span>
+            <span class="v-sep h-3"></span>
+            <span>נדל״ן</span>
+          </div>
+          <h3 class="serif text-xl font-bold leading-snug transition-colors"
+              style="color:var(--text-head);"
+              onmouseover="this.style.color='var(--gold-dark)'"
+              onmouseout="this.style.color='var(--text-head)'">
+            שינויי חקיקה במיסוי מקרקעין שחשוב להכיר
+          </h3>
+          <p class="text-sm leading-6 pt-1" style="color:var(--text-muted);font-weight:400;">
+            סקירה מקיפה של השינויים האחרונים בחוק מיסוי מקרקעין וההשלכות המעשיות על עסקאות נדל"ן.
+          </p>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="blog-card cursor-pointer group fade-up delay-100">
+        <div class="blog-img-wrap aspect-video mb-6">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzsSothEv5hGWB10nPhiUBdJMwzVzz6t40Ojrm9opnV7YnXqCExBHDnhXyUJeUuVjYWwZJd-0qAC-VYoC6i46oQL6vKU2amko-TpKGqrVF2V6qBBt1mT_jOQHWdqPfpZNBwkcHBTlvhUTbvt8wveL_kAnGk1nN8oeRXV7tHrrNhOCIMTEFXhjjzsPEI3D0WtCX7Q3VZX6fr_Nc1H_x4CreDSCf3hMkh8XcZ6hL0QCkORAhupGBXU1_QMtO68xkzj9cA8N60KwbgeZE"
+               alt="מאזני צדק מברונזה מלוטשת על שולחן עץ כהה" class="blog-img"/>
+        </div>
+        <div class="text-right space-y-2 px-1">
+          <div class="flex items-center gap-3 justify-end text-xs"
+               style="color:var(--gold-dark);letter-spacing:0.18em;">
+            <span>08.04.24</span>
+            <span class="v-sep h-3"></span>
+            <span>קניין רוחני</span>
+          </div>
+          <h3 class="serif text-xl font-bold leading-snug transition-colors"
+              style="color:var(--text-head);"
+              onmouseover="this.style.color='var(--gold-dark)'"
+              onmouseout="this.style.color='var(--text-head)'">
+            כיצד להגן על זכויות הקניין הרוחני שלכם?
+          </h3>
+          <p class="text-sm leading-6 pt-1" style="color:var(--text-muted);font-weight:400;">
+            המדריך המלא לרישום פטנטים, סימני מסחר וזכויות יוצרים בישראל ובזירה הבינלאומית.
+          </p>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="blog-card cursor-pointer group fade-up delay-200">
+        <div class="blog-img-wrap aspect-video mb-6">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0AgJr84sb3G7wpl4gcms6dYPbJHW8Cuj5A0y3isIgbObMwIsGfMWWw7thk1F01pJsddgod_F114f8rlQnKRWIMOB0EwTbj96mFPYeIhat9F8gPugqx6TCdFW6jQVop7qPmaHEDWLq8h9yz_hmvJLvI_JQ9loWEEdRpx8_quTF2v0lMmoZbnSfWTNHVTFwCD0pK4u5gwpzQtLw1ZdhGB7AeU8Tqy4DlqDQ1SK5t6h8cnWVjiubZzj9XL58GpGCgJo6OVmxwQecDstU"
+               alt="שולחן עבודה מסודר עם מסמכים משפטיים ועט נובע על משטח שיש לבן" class="blog-img"/>
+        </div>
+        <div class="text-right space-y-2 px-1">
+          <div class="flex items-center gap-3 justify-end text-xs"
+               style="color:var(--gold-dark);letter-spacing:0.18em;">
+            <span>02.04.24</span>
+            <span class="v-sep h-3"></span>
+            <span>חברות</span>
+          </div>
+          <h3 class="serif text-xl font-bold leading-snug transition-colors"
+              style="color:var(--text-head);"
+              onmouseover="this.style.color='var(--gold-dark)'"
+              onmouseout="this.style.color='var(--text-head)'">
+            מדריך למייסדים: הסכמי שותפות נכונים
+          </h3>
+          <p class="text-sm leading-6 pt-1" style="color:var(--text-muted);font-weight:400;">
+            אלו הסעיפים החיוניים שחייבים להופיע בכל הסכם שותפות כדי להגן על האינטרסים שלכם.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     CONTACT + FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer-bg" id="contact" aria-label="פרטי קשר ומידע משרד">
+
+  <!-- Contact section -->
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Contact info -->
+      <div class="space-y-10 text-right fade-up">
+        <div>
+          <div class="section-label mb-4" style="color:var(--gold);">Contact</div>
+          <div class="serif text-3xl font-bold text-white">צרו קשר</div>
+        </div>
+        <div class="gold-hr w-12"></div>
+        <p class="text-sm leading-7" style="color:rgba(255,255,255,0.45);font-weight:300;">
+          מוזמנים ליצור קשר בכל שאלה משפטית. כל פנייה מקבלת מענה אישי
+          ומהיר מעו״ד שלום יאיר עמר.
+        </p>
+
+        <div class="space-y-5">
+          <a href="tel:054-246-4315"
+             class="flex items-center gap-3 justify-end group text-sm transition-colors"
+             style="color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#fff'"
+             onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <span>054-246-4315</span>
+            <span class="material-symbols-outlined" style="font-size:20px;color:var(--gold)">call</span>
+          </a>
+          <div class="flex items-center gap-3 justify-end text-sm"
+               style="color:rgba(255,255,255,0.55);">
+            <span>יוסקה יריב 3\4, באר שבע</span>
+            <span class="material-symbols-outlined" style="font-size:20px;color:var(--gold)">location_on</span>
+          </div>
+          <a href="mailto:syamar113@gmail.com"
+             class="flex items-center gap-3 justify-end group text-sm transition-colors"
+             style="color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#fff'"
+             onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <span>syamar113@gmail.com</span>
+            <span class="material-symbols-outlined" style="font-size:20px;color:var(--gold)">mail</span>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener"
+             class="flex items-center gap-3 justify-end group text-sm transition-colors"
+             style="color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#fff'"
+             onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <span>שלום יאיר עמר עורך דין</span>
+            <span class="material-symbols-outlined" style="font-size:20px;color:var(--gold)">thumb_up</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-2 fade-up delay-100">
+        <div class="p-10 rounded"
+             style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,160,70,0.16);">
+          <h3 class="serif text-2xl font-bold text-white mb-8 text-right">
+            השאירו פרטים ונחזור אליכם
+          </h3>
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-5" aria-label="טופס יצירת קשר">
+            <div>
+              <label for="contact-name" class="sr-only">שם מלא</label>
+              <input id="contact-name" class="form-field" type="text" placeholder="שם מלא" autocomplete="name" required aria-required="true"/>
+            </div>
+            <div>
+              <label for="contact-tel" class="sr-only">טלפון</label>
+              <input id="contact-tel" class="form-field" type="tel" placeholder="טלפון" autocomplete="tel" required aria-required="true"/>
+            </div>
+            <div class="md:col-span-2">
+              <label for="contact-email" class="sr-only">כתובת מייל</label>
+              <input id="contact-email" class="form-field" type="email" placeholder="כתובת מייל" autocomplete="email"/>
+            </div>
+            <div class="md:col-span-2">
+              <label for="contact-msg" class="sr-only">הודעה</label>
+              <textarea id="contact-msg" class="form-field resize-none" rows="4"
+                        placeholder="כיצד נוכל לעזור?"></textarea>
+            </div>
+            <div class="md:col-span-2 flex justify-start">
+              <button type="submit" class="btn-gold text-sm px-12 py-3.5 rounded cursor-pointer">
+                שלח פנייה
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="map-wrap w-full" style="height:320px;">
+    <iframe
+      src="https://maps.google.com/maps?q=Yoska+Yariv+3+Beer+Sheva+Israel&output=embed&hl=he&z=16"
+      width="100%"
+      height="320"
+      style="border:0;display:block;filter:grayscale(40%) contrast(0.9) brightness(0.85);"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="מיקום משרד עורכי דין שלום יאיר עמר">
+    </iframe>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-7
+              flex flex-col sm:flex-row items-center justify-between gap-4"
+       style="border-top:1px solid rgba(255,255,255,0.05);">
+    <div class="text-xs tracking-wide flex flex-wrap items-center gap-3" style="color:rgba(255,255,255,0.25);">
+      <span>© 2024 שלום יאיר עמר, משרד עורכי דין. כל הזכויות שמורות.</span>
+      <span aria-hidden="true">|</span>
+      <button onclick="openA11yModal()"
+              class="underline underline-offset-2 cursor-pointer hover:text-white focus:outline-none focus:ring-2 focus:ring-amber-400 rounded transition-colors"
+              style="color:rgba(255,255,255,0.40);background:none;border:none;font-size:inherit;"
+              aria-haspopup="dialog">
+        הצהרת נגישות
+      </button>
+    </div>
+    <div>
+      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-7 w-auto" style="opacity:0.35;"/>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     ACCESSIBILITY STATEMENT MODAL
+══════════════════════════════════════════ -->
+<div id="a11y-modal" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title" dir="rtl"
+     class="fixed inset-0 z-[9998] flex items-center justify-center p-4" style="display:none;">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeA11yModal()" aria-hidden="true"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto text-right"
+       style="border-top:4px solid #C9A046;">
+    <div class="sticky top-0 bg-white px-8 pt-7 pb-4 flex items-start justify-between gap-4"
+         style="border-bottom:1px solid rgba(15,27,45,0.08);">
+      <button onclick="closeA11yModal()" aria-label="סגור הצהרת נגישות"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors text-xl">✕</button>
+      <div>
+        <h2 id="a11y-modal-title" class="text-2xl font-bold" style="font-family:'Noto Serif',serif;color:#0F1B2D;">הצהרת נגישות</h2>
+        <p class="text-xs mt-1" style="color:#9aabbb;letter-spacing:0.1em;">Accessibility Statement</p>
+      </div>
+    </div>
+    <div class="px-8 py-6 space-y-5 text-sm leading-7" style="color:#2c3e50;">
+      <p>משרד <strong>שלום יאיר עמר, עורכי דין</strong> מחויב לנגישות דיגיטלית ופועל להנגיש את אתר האינטרנט שלו לאנשים עם מוגבלויות, בהתאם לתקן הישראלי <strong>ת"י 5568</strong> ולחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998.</p>
+      <div>
+        <h3 class="font-bold mb-2" style="color:#0F1B2D;">רמת הנגישות</h3>
+        <p>האתר עומד ברמת התאמה <strong>AA</strong> של תקן WCAG 2.1, ומשתמש בווידג'ט נגישות המאפשר התאמות תצוגה מגוונות.</p>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2" style="color:#0F1B2D;">מה ביצענו</h3>
+        <ul class="space-y-1 pr-4" style="list-style:disc;">
+          <li>טקסט חלופי (alt) לכל התמונות</li>
+          <li>תגיות סמנטיות לניווט תוכנות קורא מסך</li>
+          <li>ניווט מקלדת מלא (Tab, Enter, Escape)</li>
+          <li>ניגודיות צבעים עמידה בדרישות WCAG AA</li>
+          <li>תמיכה בהגדלת טקסט עד 200%</li>
+        </ul>
+      </div>
+      <div style="background:#f7f5f2;border-radius:0.75rem;padding:1.25rem;">
+        <h3 class="font-bold mb-3" style="color:#0F1B2D;">יצירת קשר – רכז נגישות</h3>
+        <p class="mb-1"><strong>שם:</strong> <span style="color:#7a8a9a;">[ יש למלא שם רכז הנגישות ]</span></p>
+        <p class="mb-1"><strong>טלפון:</strong> <a href="tel:054-246-4315" style="color:#A87A20;text-decoration:underline;">054-246-4315</a></p>
+        <p class="mb-1"><strong>דוא"ל:</strong> <a href="mailto:syamar113@gmail.com" style="color:#A87A20;text-decoration:underline;">syamar113@gmail.com</a></p>
+        <p class="mt-3 text-xs" style="color:#9aabbb;">עודכן לאחרונה: <span style="color:#7a8a9a;">[ יש למלא תאריך ]</span></p>
+      </div>
+    </div>
+    <div class="px-8 pb-7 flex justify-start">
+      <button onclick="closeA11yModal()" class="btn-gold text-sm px-8 py-2.5 rounded cursor-pointer">סגור</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCROLL ANIMATIONS
+══════════════════════════════════════════ -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Nav active state on scroll
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const sections = document.querySelectorAll('section[id], footer[id]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  }, { passive: true });
+</script>
+
+<!-- Accessibility modal JS -->
+<script>
+  function openA11yModal(){const m=document.getElementById('a11y-modal');m.style.display='flex';document.body.style.overflow='hidden';setTimeout(()=>m.querySelector('button[aria-label]').focus(),50);}
+  function closeA11yModal(){document.getElementById('a11y-modal').style.display='none';document.body.style.overflow='';}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeA11yModal();});
+</script>
+
+<!-- UserWay Accessibility Widget -->
+<script>
+  (function(d){var s=d.createElement("script");s.setAttribute("data-account","YOUR_USERWAY_ACCOUNT_ID");s.setAttribute("src","https://cdn.userway.org/widget.js");(d.body||d.head).appendChild(s);})(document);
+</script>
+
+</body>
+</html>
