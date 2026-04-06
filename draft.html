@@ -310,6 +310,57 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg-soft); }
   ::-webkit-scrollbar-thumb { background: rgba(201,160,70,0.4); border-radius: 3px; }
+
+  /* ── Mobile menu ── */
+  #mobileMenu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: var(--navy);
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  #mobileMenu.open { display: flex; }
+
+  .mobile-nav-link {
+    font-family: 'Noto Serif', serif;
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.70);
+    letter-spacing: 0.03em;
+    transition: color 0.2s, opacity 0.2s;
+    display: block;
+    padding: 0.25rem 0;
+  }
+  .mobile-nav-link:hover { color: var(--gold); }
+
+  /* Hamburger lines */
+  #hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--navy);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  body.menu-open #hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  body.menu-open #hamburger span:nth-child(2) { opacity: 0; }
+  body.menu-open #hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── Mobile sticky CTA ── */
+  .mobile-sticky-cta {
+    position: fixed;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 48;
+    display: none;
+    box-shadow: 0 8px 32px rgba(201,160,70,0.35);
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+  @media (max-width: 767px) {
+    .mobile-sticky-cta { display: flex; }
+  }
 </style>
 </head>
 <body>
@@ -347,13 +398,59 @@
       <a href="#contact"      class="nav-link">צור קשר</a>
     </div>
 
-    <!-- CTA -->
-    <a href="#contact" class="btn-gold text-sm px-6 py-2.5 rounded flex-shrink-0 cursor-pointer">
+    <!-- CTA (desktop only) -->
+    <a href="#contact" class="btn-gold text-sm px-6 py-2.5 rounded flex-shrink-0 cursor-pointer hidden md:inline-flex">
       תיאום ייעוץ
     </a>
+
+    <!-- Hamburger (mobile only) -->
+    <button id="hamburger"
+            class="md:hidden flex flex-col gap-[5px] p-2 -ml-1 cursor-pointer flex-shrink-0"
+            aria-label="פתח תפריט ניווט" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
 </header>
+
+<!-- ══════════════════════════════════════════
+     MOBILE MENU OVERLAY
+══════════════════════════════════════════ -->
+<div id="mobileMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
+  <!-- Top bar -->
+  <div class="flex items-center justify-between px-6 py-5" style="border-bottom:1px solid rgba(201,160,70,0.15);">
+    <button id="closeMobileMenu" aria-label="סגור תפריט"
+            class="text-white text-2xl w-9 h-9 flex items-center justify-center rounded-full cursor-pointer"
+            style="background:rgba(255,255,255,0.07);">✕</button>
+    <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר"
+         class="h-10 w-auto" style="filter:brightness(0) invert(1); opacity:0.85;"/>
+  </div>
+
+  <!-- Links -->
+  <nav class="flex flex-col items-center justify-center flex-1 gap-6 py-12 text-center" aria-label="ניווט מובייל">
+    <a href="#about"        class="mobile-nav-link">אודות</a>
+    <a href="#practice"     class="mobile-nav-link">תחומי עיסוק</a>
+    <a href="#team"         class="mobile-nav-link">הצוות</a>
+    <a href="#testimonials" class="mobile-nav-link">המלצות</a>
+    <a href="#blog"         class="mobile-nav-link">בלוג</a>
+    <a href="#contact"      class="mobile-nav-link">צור קשר</a>
+    <div class="mt-6">
+      <a href="#contact" class="btn-gold text-sm px-10 py-3.5 rounded">תיאום ייעוץ</a>
+    </div>
+  </nav>
+
+  <!-- Footer line -->
+  <div class="px-6 pb-10 text-center text-xs" style="color:rgba(255,255,255,0.25);letter-spacing:0.1em;">
+    שלום יאיר עמר | משרד עורכי דין
+  </div>
+</div>
+
+<!-- Mobile sticky CTA -->
+<a href="#contact" class="mobile-sticky-cta btn-gold text-sm px-8 py-3.5" aria-label="תיאום ייעוץ משפטי">
+  📞 תיאום ייעוץ משפטי
+</a>
 
 <main id="main-content">
 
@@ -374,7 +471,7 @@
       <div class="text-right space-y-8 order-2 lg:order-1">
         <div class="section-label fade-up">משרד עורכי דין | Beer Sheva, Israel</div>
 
-        <h1 class="serif text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight fade-up delay-100"
+        <h1 class="serif text-3xl sm:text-4xl md:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight fade-up delay-100"
             style="color:var(--text-head);">
           שלום יאיר עמר
           <span class="block mt-3" style="font-family:'Manrope',sans-serif;letter-spacing:0.18em;font-size:0.9rem;text-transform:uppercase;color:var(--text-muted);font-weight:400;">
@@ -390,11 +487,11 @@
           כל תיק מקבל מעטפת אישית ברמת דיוק של אומן.
         </p>
 
-        <div class="flex gap-4 justify-end flex-wrap fade-up delay-300">
-          <a href="#contact" class="btn-gold text-sm px-9 py-3.5 rounded cursor-pointer">
+        <div class="flex flex-col sm:flex-row gap-3 justify-end flex-wrap fade-up delay-300">
+          <a href="#contact" class="btn-gold text-sm px-8 py-3.5 rounded cursor-pointer text-center">
             תיאום ייעוץ משפטי
           </a>
-          <a href="#practice" class="btn-outline text-sm px-9 py-3.5 rounded cursor-pointer">
+          <a href="#practice" class="btn-outline text-sm px-8 py-3.5 rounded cursor-pointer text-center">
             תחומי התמחות
           </a>
         </div>
@@ -477,7 +574,7 @@
 <!-- ══════════════════════════════════════════
      ABOUT
 ══════════════════════════════════════════ -->
-<section class="py-32 relative overflow-hidden" id="about" style="background:var(--bg-soft);">
+<section class="py-16 md:py-32 relative overflow-hidden" id="about" style="background:var(--bg-soft);">
 
   <!-- Subtle gold accent -->
   <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-3/4 pointer-events-none"
@@ -498,7 +595,7 @@
       <!-- Text -->
       <div class="w-full lg:w-7/12 text-right space-y-5 fade-up delay-200">
         <div class="section-label">חזון וערכים</div>
-        <h2 class="serif text-4xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
+        <h2 class="serif text-3xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
           המצוינות<br/>
           <span class="gold-text">היא בפרטים הקטנים</span>
         </h2>
@@ -534,7 +631,7 @@
 <!-- ══════════════════════════════════════════
      PRACTICE AREAS
 ══════════════════════════════════════════ -->
-<section class="py-32" id="practice" style="background:var(--bg-white);">
+<section class="py-16 md:py-32" id="practice" style="background:var(--bg-white);">
   <div class="max-w-screen-2xl mx-auto px-6 lg:px-14">
 
     <div class="text-center mb-20 fade-up">
@@ -546,7 +643,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
 
       <!-- Real Estate -->
-      <div class="practice-card p-10 cursor-default fade-up">
+      <div class="practice-card p-6 md:p-10 cursor-default fade-up">
         <div class="practice-num mb-2">01</div>
         <span class="material-symbols-outlined text-4xl practice-icon mb-5 block">domain</span>
         <h3 class="serif text-2xl font-bold mb-4" style="color:var(--text-head);">נדל״ן ומקרקעין</h3>
@@ -592,7 +689,7 @@
 <!-- ══════════════════════════════════════════
      TEAM
 ══════════════════════════════════════════ -->
-<section class="py-32 overflow-hidden" id="team" style="background:var(--bg-soft);">
+<section class="py-16 md:py-32 overflow-hidden" id="team" style="background:var(--bg-soft);">
   <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
     <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
 
@@ -608,7 +705,7 @@
       <!-- Bio -->
       <div class="w-full lg:w-7/12 text-right space-y-5 fade-up delay-200">
         <div class="section-label">הצוות</div>
-        <h2 class="serif text-4xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
+        <h2 class="serif text-3xl md:text-5xl font-bold leading-tight" style="color:var(--text-head);">
           עו״ד שלום<br/>
           <span class="gold-text">יאיר עמר</span>
         </h2>
@@ -658,7 +755,7 @@
 <!-- ══════════════════════════════════════════
      TESTIMONIALS
 ══════════════════════════════════════════ -->
-<section class="py-32" id="testimonials" style="background:var(--bg-light);">
+<section class="py-16 md:py-32" id="testimonials" style="background:var(--bg-light);">
   <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
 
     <div class="text-center mb-16 fade-up">
@@ -670,7 +767,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
       <!-- Card 1 -->
-      <div class="testimonial-card p-10 fade-up">
+      <div class="testimonial-card p-6 md:p-10 fade-up">
         <span class="quote-giant">"</span>
         <p class="serif text-xl font-light italic leading-9 mt-2" style="color:var(--text-head);">
           הליווי של עו"ד עמר היה מקצועי, אדיב ומדויק. הצליח לפתור סכסוך נדל"ני
@@ -715,14 +812,14 @@
 <!-- ══════════════════════════════════════════
      BLOG
 ══════════════════════════════════════════ -->
-<section class="py-32" id="blog" style="background:var(--bg-white);">
+<section class="py-16 md:py-32" id="blog" style="background:var(--bg-white);">
   <div class="max-w-screen-2xl mx-auto px-6 lg:px-14">
 
-    <div class="flex items-end justify-between mb-16 fade-up">
-      <a href="#" class="btn-outline text-xs px-5 py-2.5 rounded">כל המאמרים ←</a>
+    <div class="flex flex-col-reverse sm:flex-row items-start sm:items-end justify-between gap-4 mb-12 md:mb-16 fade-up">
+      <a href="#" class="btn-outline text-xs px-5 py-2.5 rounded self-start sm:self-auto">כל המאמרים ←</a>
       <div class="text-right">
         <div class="section-label mb-3">Insights</div>
-        <h2 class="serif text-4xl md:text-5xl font-bold" style="color:var(--text-head);">עדכונים משפטיים</h2>
+        <h2 class="serif text-3xl md:text-5xl font-bold" style="color:var(--text-head);">עדכונים משפטיים</h2>
       </div>
     </div>
 
@@ -816,7 +913,7 @@
 <footer class="footer-bg" id="contact" aria-label="פרטי קשר ומידע משרד">
 
   <!-- Contact section -->
-  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-24">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-14 md:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Contact info -->
@@ -1038,6 +1135,50 @@
       if (l.getAttribute('href') === '#' + current) l.classList.add('active');
     });
   }, { passive: true });
+</script>
+
+<!-- Mobile menu JS -->
+<script>
+  (function () {
+    const hamburger      = document.getElementById('hamburger');
+    const mobileMenu     = document.getElementById('mobileMenu');
+    const closeBtn       = document.getElementById('closeMobileMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      document.body.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
+      hamburger.setAttribute('aria-expanded', 'true');
+      closeBtn.focus();
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close on any link click inside menu
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Close on Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    // Hide sticky CTA when contact section visible
+    const contactSection = document.getElementById('contact');
+    const stickyBtn = document.querySelector('.mobile-sticky-cta');
+    if (contactSection && stickyBtn) {
+      const ctaObserver = new IntersectionObserver(entries => {
+        stickyBtn.style.opacity = entries[0].isIntersecting ? '0' : '1';
+        stickyBtn.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+      }, { threshold: 0.1 });
+      ctaObserver.observe(contactSection);
+    }
+  })();
 </script>
 
 <!-- Accessibility modal JS -->
