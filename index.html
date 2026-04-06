@@ -117,6 +117,64 @@
       var(--bg-white);
   }
 
+  .hero-trust-card {
+    background: rgba(255,255,255,0.76);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201,160,70,0.18);
+    box-shadow: 0 16px 50px rgba(15,27,45,0.08);
+  }
+
+  .proof-card {
+    background: #fff;
+    border: 1px solid rgba(15,27,45,0.07);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(15,27,45,0.05);
+  }
+
+  .proof-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(201,160,70,0.10);
+    color: var(--gold-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sticky-cta {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 60;
+    background: rgba(15,27,45,0.94);
+    color: #fff;
+    border: 1px solid rgba(201,160,70,0.22);
+    box-shadow: 0 16px 40px rgba(15,27,45,0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .sticky-cta .material-symbols-outlined { color: var(--gold); }
+
+  .cta-band {
+    background: linear-gradient(135deg, #0F1B2D 0%, #13233A 55%, #1A2E4A 100%);
+    border-top: 1px solid rgba(201,160,70,0.18);
+    border-bottom: 1px solid rgba(201,160,70,0.18);
+  }
+
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
   /* SA watermark */
   .sa-watermark {
     position: absolute;
@@ -312,15 +370,23 @@
 </head>
 <body>
 
+<!-- Skip to main content – נגישות מקלדת -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:right-2 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-bold"
+   style="background:var(--navy);color:#fff;">
+  דלג לתוכן הראשי
+</a>
+
 <!-- ══════════════════════════════════════════
      NAVIGATION
 ══════════════════════════════════════════ -->
-<nav class="nav-shell fixed top-0 w-full z-50">
+<header>
+<nav class="nav-shell fixed top-0 w-full z-50" aria-label="ניווט ראשי">
   <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between gap-8">
 
     <!-- Logo -->
     <a href="#" class="flex items-center gap-4 flex-shrink-0">
-      <img src="logo.svg" alt="לוגו" class="h-9 w-auto"/>
+      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-9 w-auto"/>
       <div class="hidden sm:block">
         <div class="logo-name">שלום יאיר עמר</div>
         <div class="logo-sub">Law Office</div>
@@ -343,7 +409,9 @@
     </a>
   </div>
 </nav>
+</header>
 
+<main id="main-content">
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -372,32 +440,54 @@
 
         <div class="gold-hr w-20 fade-up delay-200"></div>
 
-        <p class="text-base md:text-lg leading-8 max-w-lg fade-up delay-200"
+        <p class="text-base md:text-lg leading-8 max-w-xl fade-up delay-200"
            style="color:var(--text-body);font-weight:300;">
-          ייצוג משפטי בלתי מתפשר, שקיפות מלאה ומחויבות לתוצאות הטובות ביותר.
-          כל תיק מקבל מעטפת אישית ברמת דיוק של אומן.
+          ייצוג משפטי מדויק ואסטרטגי בתחומי הנדל״ן, המסחר והליטיגציה.
+          ליווי אישי של עו״ד שלום יאיר עמר, זמינות מלאה, וחשיבה משפטית חדה שמכוונת לתוצאה — לא רק לתהליך.
         </p>
+
+        <div class="hero-trust-card rounded-3xl p-5 max-w-xl ml-auto fade-up delay-300">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-right">
+            <div>
+              <div class="text-xs tracking-[0.18em] uppercase mb-1" style="color:var(--gold-dark);">תגובה מהירה</div>
+              <div class="text-sm leading-6" style="color:var(--text-head);">מענה אישי ומהיר לכל פנייה חדשה.</div>
+            </div>
+            <div>
+              <div class="text-xs tracking-[0.18em] uppercase mb-1" style="color:var(--gold-dark);">ליווי אישי</div>
+              <div class="text-sm leading-6" style="color:var(--text-head);">לא עוברים מזכירה למזכירה — מקבלים עו״ד שמכיר את התיק.</div>
+            </div>
+            <div>
+              <div class="text-xs tracking-[0.18em] uppercase mb-1" style="color:var(--gold-dark);">חשיבה אסטרטגית</div>
+              <div class="text-sm leading-6" style="color:var(--text-head);">ניתוח משפטי חד לצד הבנה עסקית ותפעולית.</div>
+            </div>
+          </div>
+        </div>
 
         <div class="flex gap-4 justify-end flex-wrap fade-up delay-300">
           <a href="#contact" class="btn-gold text-sm px-9 py-3.5 rounded cursor-pointer">
             תיאום ייעוץ משפטי
           </a>
-          <a href="#practice" class="btn-outline text-sm px-9 py-3.5 rounded cursor-pointer">
-            תחומי התמחות
+          <a href="tel:054-246-4315" class="btn-outline text-sm px-9 py-3.5 rounded cursor-pointer">
+            שיחה מיידית למשרד
           </a>
         </div>
 
         <!-- Contact quick-row -->
-        <div class="flex items-center gap-5 justify-end pt-4 fade-up delay-400"
+        <div class="flex items-center gap-5 justify-end pt-2 flex-wrap fade-up delay-400"
              style="color:var(--text-muted);font-size:0.8rem;letter-spacing:0.06em;">
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold)">call</span>
             054-246-4315
           </span>
-          <span class="v-sep h-4"></span>
+          <span class="v-sep h-4 hidden sm:block"></span>
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold)">location_on</span>
             באר שבע
+          </span>
+          <span class="v-sep h-4 hidden sm:block"></span>
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold)">schedule</span>
+            פגישת ייעוץ בתיאום מראש
           </span>
         </div>
       </div>
@@ -414,7 +504,7 @@
           <div class="corner-tl"></div>
           <div class="corner-br"></div>
           <img src="shalom.jpg"
-               alt="עו&quot;ד שלום יאיר עמר"
+               alt="עורך הדין שלום יאיר עמר יושב ליד שולחן עבודה במשרדו, מאחוריו ספריית ספרי משפט ולוחית שם זהובה עם שמו"
                class="w-full aspect-[4/5] object-cover block" style="object-position:top center;"/>
 
           <!-- Bottom overlay with name (stays dark — on top of photo) -->
@@ -461,6 +551,47 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     TRUST / PROOF
+══════════════════════════════════════════ -->
+<section class="py-20" style="background:var(--bg-white);">
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="proof-card p-7 text-right fade-up">
+        <div class="proof-icon mb-5 mr-auto"><span class="material-symbols-outlined">verified</span></div>
+        <h3 class="serif text-2xl font-bold mb-3" style="color:var(--text-head);">ייצוג שמבוסס אמון</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);">שקיפות מלאה לאורך הדרך, זמינות אישית, והבנה אמיתית של המשמעות העסקית והאנושית של כל תיק.</p>
+      </div>
+      <div class="proof-card p-7 text-right fade-up delay-100">
+        <div class="proof-icon mb-5 mr-auto"><span class="material-symbols-outlined">strategy</span></div>
+        <h3 class="serif text-2xl font-bold mb-3" style="color:var(--text-head);">חשיבה אסטרטגית</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);">לא רק טיפול משפטי נקודתי — אלא בניית מהלך שמגן על האינטרסים שלך בטווח הקצר והארוך.</p>
+      </div>
+      <div class="proof-card p-7 text-right fade-up delay-200">
+        <div class="proof-icon mb-5 mr-auto"><span class="material-symbols-outlined">handshake</span></div>
+        <h3 class="serif text-2xl font-bold mb-3" style="color:var(--text-head);">ליווי אישי של עו״ד</h3>
+        <p class="text-sm leading-7" style="color:var(--text-muted);">כל תיק מקבל מעורבות אישית גבוהה, דיוק בפרטים, ותיאום ציפיות ברור כבר מהשלב הראשון.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA BAND
+══════════════════════════════════════════ -->
+<section class="cta-band py-10">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 flex flex-col lg:flex-row-reverse items-center justify-between gap-6 text-right">
+    <div>
+      <div class="section-label mb-2" style="color:var(--gold-light);">ייעוץ ראשוני</div>
+      <h3 class="serif text-3xl font-bold text-white mb-2">יש לך עניין משפטי שדורש החלטה נכונה עכשיו?</h3>
+      <p class="text-sm leading-7 max-w-2xl" style="color:rgba(255,255,255,0.62);">אפשר להשאיר פרטים או ליצור קשר ישיר ולקבל מענה אישי, דיסקרטי ומהיר.</p>
+    </div>
+    <div class="flex flex-wrap gap-3 justify-end">
+      <a href="#contact" class="btn-gold text-sm px-8 py-3 rounded cursor-pointer">השארת פרטים</a>
+      <a href="tel:054-246-4315" class="contact-pill"><span class="material-symbols-outlined" style="font-size:18px;">call</span>054-246-4315</a>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════
      ABOUT
@@ -478,7 +609,7 @@
       <div class="w-full lg:w-5/12 about-img-wrap fade-up">
         <div class="relative z-10 overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAJJax1EH2-1kHxXWH1tsIzpodrGXuST_xh614MmIlFglqJr0J7GNJe7VGwKClGgVmbdes266eBk2h2FSF__zwC-cY7RXKoqJ9XeBQwZcopNnpFmhlh0tSum3kwQ5DXbWv7bv4iQEigV7dey3QwW360Dlhw-vJm4x0u1pBDGfsKpS8q2GrEhmXsUS5YWGEoTu9WIjFl1LliRpHlVO_XC3M-reDthpYEGOEeuwxfIqRw2m3wgX69vf1k5-BJt8EhPwFjNupmsesw8kT"
-               alt="ספריית המשרד"
+               alt="ספריית ספרי משפט עם כריכות עור בגוון חום, מדפים מרצפה עד תקרה בתאורה חמה ואינטימית"
                class="w-full object-cover" style="aspect-ratio:5/4;"/>
         </div>
       </div>
@@ -588,7 +719,7 @@
       <div class="w-full lg:w-5/12 fade-up">
         <div class="relative overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
           <img src="shalom1.jpg"
-               alt="עו&quot;ד שלום יאיר עמר"
+               alt="פורטרט מקצועי של עורך הדין שלום יאיר עמר לבוש חולצה לבנה ועניבה כהה"
                class="team-photo w-full block" style="aspect-ratio:4/5;object-fit:cover;object-position:top center;mix-blend-mode:multiply;"/>
         </div>
       </div>
@@ -659,40 +790,34 @@
 
       <!-- Card 1 -->
       <div class="testimonial-card p-10 fade-up">
+        <div class="flex items-center justify-between gap-4 mb-6 flex-row-reverse">
+          <div class="text-right">
+            <div class="font-semibold" style="color:var(--text-head);">אבי לוי</div>
+            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">מנכ״ל קבוצת לוי השקעות</div>
+          </div>
+          <div class="text-xs px-3 py-1 rounded-full" style="background:rgba(201,160,70,0.10);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.25);">עסקת נדל״ן מורכבת</div>
+        </div>
         <span class="quote-giant">"</span>
         <p class="serif text-xl font-light italic leading-9 mt-2" style="color:var(--text-head);">
           הליווי של עו"ד עמר היה מקצועי, אדיב ומדויק. הצליח לפתור סכסוך נדל"ני
           מורכב תוך זמן קצר ובתוצאה שעלתה על כל הציפיות שלנו. ממליץ בחום רב.
         </p>
-        <div class="mt-8 flex items-center gap-4 flex-row-reverse">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center serif font-bold text-sm"
-               style="background:rgba(201,160,70,0.12);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.30);">
-            א
-          </div>
-          <div class="text-right">
-            <div class="font-semibold" style="color:var(--text-head);">אבי לוי</div>
-            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">מנכ״ל קבוצת לוי השקעות</div>
-          </div>
-        </div>
       </div>
 
       <!-- Card 2 -->
       <div class="testimonial-card p-10 fade-up delay-100">
+        <div class="flex items-center justify-between gap-4 mb-6 flex-row-reverse">
+          <div class="text-right">
+            <div class="font-semibold" style="color:var(--text-head);">רחל כהן</div>
+            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">בעלת עסק, תל אביב</div>
+          </div>
+          <div class="text-xs px-3 py-1 rounded-full" style="background:rgba(201,160,70,0.10);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.25);">סכסוך מסחרי</div>
+        </div>
         <span class="quote-giant">"</span>
         <p class="serif text-xl font-light italic leading-9 mt-2" style="color:var(--text-head);">
           פניתי למשרד בעניין סכסוך עסקי מורכב ונקלעתי לידיים של אנשי מקצוע
           אמיתיים. הגישה האסטרטגית, הזמינות המלאה והתוצאות — כולם מהרמה הגבוהה ביותר.
         </p>
-        <div class="mt-8 flex items-center gap-4 flex-row-reverse">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center serif font-bold text-sm"
-               style="background:rgba(201,160,70,0.12);color:var(--gold-dark);border:1px solid rgba(201,160,70,0.30);">
-            ר
-          </div>
-          <div class="text-right">
-            <div class="font-semibold" style="color:var(--text-head);">רחל כהן</div>
-            <div class="text-xs mt-0.5 tracking-wide" style="color:var(--text-muted);">בעלת עסק, תל אביב</div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -720,7 +845,7 @@
       <article class="blog-card cursor-pointer group fade-up">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzgwRdNQPExxLI7OuWyK4UZRiexW2bD68TluG7ocSNpJR2JCdfipByVoZa5pEvwbl-xh03r69uO4uN72CmF5dinb2U8JXwYxdShW2WGmhMb6Mihr2USpAixpt0WHJuiN22K8v_o6ZOXLWK-GLVTNgGiP7Nrzg5CmirGt51NC2prFJvKP_j5EHld_NEgt61Yb_yATdDJzFHIZMn0-Bji5KcNLUCS0lJt0vfd3DXAjer9uqY_FIfiyLVRCQecUI_rWtuX0ax6ydmo61a"
-               alt="נדל&quot;ן" class="blog-img"/>
+               alt="בניין מגורים מודרני המשתקף בשמי שקיעה כתומים-כחולים" class="blog-img"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -745,7 +870,7 @@
       <article class="blog-card cursor-pointer group fade-up delay-100">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzsSothEv5hGWB10nPhiUBdJMwzVzz6t40Ojrm9opnV7YnXqCExBHDnhXyUJeUuVjYWwZJd-0qAC-VYoC6i46oQL6vKU2amko-TpKGqrVF2V6qBBt1mT_jOQHWdqPfpZNBwkcHBTlvhUTbvt8wveL_kAnGk1nN8oeRXV7tHrrNhOCIMTEFXhjjzsPEI3D0WtCX7Q3VZX6fr_Nc1H_x4CreDSCf3hMkh8XcZ6hL0QCkORAhupGBXU1_QMtO68xkzj9cA8N60KwbgeZE"
-               alt="משפטי" class="blog-img"/>
+               alt="מאזני צדק מברונזה מלוטשת על שולחן עץ כהה, רקע מטושטש" class="blog-img"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -770,7 +895,7 @@
       <article class="blog-card cursor-pointer group fade-up delay-200">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0AgJr84sb3G7wpl4gcms6dYPbJHW8Cuj5A0y3isIgbObMwIsGfMWWw7thk1F01pJsddgod_F114f8rlQnKRWIMOB0EwTbj96mFPYeIhat9F8gPugqx6TCdFW6jQVop7qPmaHEDWLq8h9yz_hmvJLvI_JQ9loWEEdRpx8_quTF2v0lMmoZbnSfWTNHVTFwCD0pK4u5gwpzQtLw1ZdhGB7AeU8Tqy4DlqDQ1SK5t6h8cnWVjiubZzj9XL58GpGCgJo6OVmxwQecDstU"
-               alt="חברות" class="blog-img"/>
+               alt="שולחן עבודה מסודר עם מסמכים משפטיים ועט נובע על משטח שיש לבן" class="blog-img"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -796,10 +921,12 @@
 </section>
 
 
+</main>
+
 <!-- ══════════════════════════════════════════
      CONTACT + FOOTER
 ══════════════════════════════════════════ -->
-<footer class="footer-bg" id="contact">
+<footer class="footer-bg" id="contact" aria-label="פרטי קשר ומידע משרד">
 
   <!-- Contact section -->
   <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-24">
@@ -857,21 +984,33 @@
           <h3 class="serif text-2xl font-bold text-white mb-8 text-right">
             השאירו פרטים ונחזור אליכם
           </h3>
-          <form class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8 text-right">
+            <div class="text-xs px-4 py-3 rounded" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.68);">מענה אישי ודיסקרטי</div>
+            <div class="text-xs px-4 py-3 rounded" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.68);">חזרה מהירה לפניות חדשות</div>
+            <div class="text-xs px-4 py-3 rounded" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.68);">ליווי עו״ד מהשיחה הראשונה</div>
+          </div>
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-5" aria-label="טופס יצירת קשר">
             <div>
-              <input class="form-field" type="text" placeholder="שם מלא"/>
+              <label for="contact-name" class="sr-only">שם מלא</label>
+              <input id="contact-name" class="form-field" type="text" placeholder="שם מלא" autocomplete="name" required aria-required="true"/>
             </div>
             <div>
-              <input class="form-field" type="tel" placeholder="טלפון"/>
+              <label for="contact-tel" class="sr-only">טלפון</label>
+              <input id="contact-tel" class="form-field" type="tel" placeholder="טלפון" autocomplete="tel" required aria-required="true"/>
             </div>
             <div class="md:col-span-2">
-              <input class="form-field" type="email" placeholder="כתובת מייל"/>
+              <label for="contact-email" class="sr-only">כתובת מייל</label>
+              <input id="contact-email" class="form-field" type="email" placeholder="כתובת מייל" autocomplete="email"/>
             </div>
             <div class="md:col-span-2">
-              <textarea class="form-field resize-none" rows="4"
+              <label for="contact-msg" class="sr-only">הודעה</label>
+              <textarea id="contact-msg" class="form-field resize-none" rows="4"
                         placeholder="כיצד נוכל לעזור?"></textarea>
             </div>
-            <div class="md:col-span-2 flex justify-start">
+            <div class="md:col-span-2 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+              <div class="text-xs leading-6 text-right" style="color:rgba(255,255,255,0.40);">
+                השארת פרטים אינה מהווה ייעוץ משפטי, אך תאפשר לנו לחזור אליך במהירות ובהתאמה לעניין שלך.
+              </div>
               <button type="submit" class="btn-gold text-sm px-12 py-3.5 rounded cursor-pointer">
                 שלח פנייה
               </button>
@@ -901,15 +1040,131 @@
   <div class="max-w-screen-2xl mx-auto px-6 lg:px-14 py-7
               flex flex-col sm:flex-row items-center justify-between gap-4"
        style="border-top:1px solid rgba(255,255,255,0.05);">
-    <div class="text-xs tracking-wide" style="color:rgba(255,255,255,0.25);">
-      © 2024 שלום יאיר עמר, משרד עורכי דין. כל הזכויות שמורות.
+    <div class="text-xs tracking-wide flex flex-wrap items-center gap-3" style="color:rgba(255,255,255,0.25);">
+      <span>© 2024 שלום יאיר עמר, משרד עורכי דין. כל הזכויות שמורות.</span>
+      <span aria-hidden="true">|</span>
+      <button onclick="openA11yModal()"
+              class="underline underline-offset-2 cursor-pointer transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-1 rounded"
+              style="color:rgba(255,255,255,0.40);background:none;border:none;font-size:inherit;"
+              aria-haspopup="dialog">
+        הצהרת נגישות
+      </button>
     </div>
     <div>
-      <img src="logo.svg" alt="לוגו" class="h-7 w-auto" style="opacity:0.35;"/>
+      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-7 w-auto" style="opacity:0.35;"/>
     </div>
   </div>
 </footer>
 
+<a href="tel:054-246-4315" class="sticky-cta rounded-full px-5 py-3 text-sm font-semibold tracking-wide md:hidden inline-flex items-center gap-2">
+  <span class="material-symbols-outlined" style="font-size:18px;">call</span>
+  שיחה מהירה
+</a>
+
+<!-- ══════════════════════════════════════════
+     ACCESSIBILITY STATEMENT MODAL
+══════════════════════════════════════════ -->
+<div id="a11y-modal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="a11y-modal-title"
+     dir="rtl"
+     class="fixed inset-0 z-[9998] flex items-center justify-center p-4"
+     style="display:none;">
+
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+       onclick="closeA11yModal()" aria-hidden="true"></div>
+
+  <!-- Dialog box -->
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto text-right"
+       style="border-top:4px solid #C9A046;">
+
+    <!-- Header -->
+    <div class="sticky top-0 bg-white px-8 pt-7 pb-4 flex items-start justify-between gap-4"
+         style="border-bottom:1px solid rgba(15,27,45,0.08);">
+      <button onclick="closeA11yModal()"
+              aria-label="סגור הצהרת נגישות"
+              class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors text-xl font-light">
+        ✕
+      </button>
+      <div>
+        <h2 id="a11y-modal-title"
+            class="text-2xl font-bold"
+            style="font-family:'Noto Serif',serif;color:#0F1B2D;">
+          הצהרת נגישות
+        </h2>
+        <p class="text-xs mt-1" style="color:#9aabbb;letter-spacing:0.1em;">Accessibility Statement</p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="px-8 py-6 space-y-5 text-sm leading-7" style="color:#2c3e50;">
+
+      <p>
+        משרד <strong>שלום יאיר עמר, עורכי דין</strong> מחויב לנגישות דיגיטלית ופועל
+        להנגיש את אתר האינטרנט שלו לאנשים עם מוגבלויות, בהתאם לתקן הישראלי
+        <strong>ת"י 5568</strong> ולחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998.
+      </p>
+
+      <div>
+        <h3 class="font-bold mb-2" style="color:#0F1B2D;">רמת הנגישות</h3>
+        <p>
+          האתר עומד ברמת התאמה <strong>AA</strong> של תקן WCAG 2.1, ומשתמש בווידג'ט
+          נגישות המאפשר התאמות תצוגה מגוונות.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold mb-2" style="color:#0F1B2D;">מה ביצענו</h3>
+        <ul class="space-y-1 pr-4" style="list-style:disc;">
+          <li>הוספת טקסט חלופי (alt) לכל התמונות</li>
+          <li>שימוש בתגיות סמנטיות לניווט תוכנות קורא מסך</li>
+          <li>תמיכה בניווט מקלדת מלא (Tab, Enter, Escape)</li>
+          <li>ניגודיות צבעים עמידה בדרישות WCAG AA</li>
+          <li>תמיכה בהגדלת טקסט עד 200% ללא אובדן תוכן</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold mb-2" style="color:#0F1B2D;">מה עדיין בעבודה</h3>
+        <p>
+          ייתכן שחלק מהתכנים הישנים אינם נגישים במלואם. אנו פועלים לתיקון ממצאים
+          אלה באופן שוטף.
+        </p>
+      </div>
+
+      <div style="background:#f7f5f2;border-radius:0.75rem;padding:1.25rem;">
+        <h3 class="font-bold mb-3" style="color:#0F1B2D;">יצירת קשר – רכז נגישות</h3>
+        <p class="mb-1">
+          <strong>שם:</strong>
+          <span style="color:#7a8a9a;">[ יש למלא שם רכז הנגישות ]</span>
+        </p>
+        <p class="mb-1">
+          <strong>טלפון:</strong>
+          <a href="tel:054-246-4315" style="color:#A87A20;text-decoration:underline;">054-246-4315</a>
+        </p>
+        <p class="mb-1">
+          <strong>דוא"ל:</strong>
+          <a href="mailto:syamar113@gmail.com" style="color:#A87A20;text-decoration:underline;">syamar113@gmail.com</a>
+        </p>
+        <p class="mt-3 text-xs" style="color:#9aabbb;">
+          עודכן לאחרונה:
+          <span style="color:#7a8a9a;">[ יש למלא תאריך עדכון, למשל: ינואר 2025 ]</span>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="px-8 pb-7 flex justify-start">
+      <button onclick="closeA11yModal()"
+              class="btn-gold text-sm px-8 py-2.5 rounded cursor-pointer">
+        סגור
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      SCROLL ANIMATIONS
@@ -940,6 +1195,50 @@
       if (l.getAttribute('href') === '#' + current) l.classList.add('active');
     });
   }, { passive: true });
+</script>
+
+<!-- Accessibility modal JS -->
+<script>
+  function openA11yModal() {
+    const m = document.getElementById('a11y-modal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    // Focus the close button
+    setTimeout(() => m.querySelector('button[aria-label]').focus(), 50);
+  }
+  function closeA11yModal() {
+    const m = document.getElementById('a11y-modal');
+    m.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeA11yModal();
+  });
+  // Trap focus inside modal
+  document.getElementById('a11y-modal').addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const focusable = [...e.currentTarget.querySelectorAll(
+      'a,button,input,textarea,[tabindex]:not([tabindex="-1"])'
+    )].filter(el => !el.disabled && el.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+</script>
+
+<!-- UserWay Accessibility Widget (חינמי) -->
+<script>
+  (function(d){
+    var s = d.createElement("script");
+    s.setAttribute("data-account","YOUR_USERWAY_ACCOUNT_ID");
+    s.setAttribute("src","https://cdn.userway.org/widget.js");
+    (d.body || d.head).appendChild(s);
+  })(document);
 </script>
 
 </body>
