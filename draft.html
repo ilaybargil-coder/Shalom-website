@@ -892,6 +892,12 @@
           </div>
 
           <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-5" aria-label="טופס יצירת קשר" novalidate>
+            <!-- Web3Forms access key -->
+            <input type="hidden" name="access_key" value="ea08ffc1-24c0-4143-b1cb-7efd38cd989e"/>
+            <!-- Subject line that appears in your inbox -->
+            <input type="hidden" name="subject" value="פנייה חדשה מהאתר — משרד עורכי דין שלום יאיר עמר"/>
+            <!-- Honeypot anti-spam field -->
+            <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" aria-hidden="true"/>
             <div>
               <label for="contact-name" class="sr-only">שם מלא</label>
               <input id="contact-name" name="fullName" class="form-field" type="text" placeholder="שם מלא" autocomplete="name" required aria-required="true"/>
@@ -1047,11 +1053,11 @@
 </script>
 
 <!-- ══════════════════════════════════════════
-     CONTACT FORM — Make.com Webhook
+     CONTACT FORM — Web3Forms
 ══════════════════════════════════════════ -->
 <script>
   (function () {
-    const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE'; // ← הכנס כאן את ה-Webhook URL מ-Make.com
+    const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
     const form       = document.getElementById('contactForm');
     const successBox = document.getElementById('formSuccess');
@@ -1062,55 +1068,74 @@
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      // ── Validate required fields manually (novalidate is set) ──
+      // ── Validate required fields ──
       const requiredFields = form.querySelectorAll('[required]');
-      let allValid = true;
+      let firstInvalid = null;
       requiredFields.forEach(field => {
         if (!field.value.trim()) {
           field.style.borderColor = '#e05252';
-          field.focus();
-          allValid = false;
+          field.style.boxShadow   = '0 0 0 3px rgba(224,82,82,0.12)';
+          if (!firstInvalid) firstInvalid = field;
         } else {
           field.style.borderColor = '';
+          field.style.boxShadow   = '';
         }
       });
-      if (!allValid) return;
+      if (firstInvalid) { firstInvalid.focus(); return; }
 
-      // ── Disable button & show loading state ──
-      submitBtn.disabled  = true;
-      submitBtn.textContent = 'שולח...';
-      submitBtn.style.opacity = '0.7';
+      // ── Loading state ──
+      submitBtn.disabled        = true;
+      submitBtn.textContent     = 'שולח...';
+      submitBtn.style.opacity   = '0.7';
+      submitBtn.style.cursor    = 'not-allowed';
 
-      // ── Collect form data ──
+      // ── Build JSON payload (Web3Forms format) ──
       const formData = new FormData(form);
-      const payload  = {};
-      formData.forEach((value, key) => { payload[key] = value; });
-      // Add timestamp for convenience
-      payload.submittedAt = new Date().toISOString();
+      const payload  = Object.fromEntries(formData.entries());
 
       try {
-        const response = await fetch(WEBHOOK_URL, {
+        const res  = await fetch(WEB3FORMS_URL, {
           method : 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body   : JSON.stringify(payload)
         });
+        const data = await res.json();
 
-        if (response.ok || response.status === 200 || response.status === 204) {
-          // ── Success: hide form, show thank-you message ──
-          form.style.display        = 'none';
-          successBox.style.display  = 'block';
+        if (data.success) {
+          // ── Success ──
+          form.style.display       = 'none';
+          successBox.style.display = 'block';
           successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          throw new Error('שגיאת שרת: ' + response.status);
+          throw new Error(data.message || 'שגיאה לא ידועה');
         }
       } catch (err) {
-        console.error('שגיאה בשליחת הטופס:', err);
-        alert('אירעה שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות בטלפון.');
-        // Re-enable button so user can retry
-        submitBtn.disabled    = false;
-        submitBtn.textContent = 'שלח פנייה';
+        console.error('Web3Forms error:', err);
+        // Re-enable button
+        submitBtn.disabled      = false;
+        submitBtn.textContent   = 'שלח פנייה';
         submitBtn.style.opacity = '1';
+        submitBtn.style.cursor  = 'pointer';
+        // Show inline error instead of alert
+        let errBox = document.getElementById('formError');
+        if (!errBox) {
+          errBox = document.createElement('p');
+          errBox.id = 'formError';
+          errBox.style.cssText = 'color:#e05252;font-size:0.85rem;margin-top:0.5rem;text-align:right;';
+          form.appendChild(errBox);
+        }
+        errBox.textContent = 'אירעה שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות בטלפון.';
       }
+    });
+
+    // Clear red border on user input
+    form.querySelectorAll('input, textarea').forEach(field => {
+      field.addEventListener('input', function () {
+        this.style.borderColor = '';
+        this.style.boxShadow   = '';
+        const errBox = document.getElementById('formError');
+        if (errBox) errBox.textContent = '';
+      });
     });
   })();
 </script>
