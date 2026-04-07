@@ -7,6 +7,9 @@
 <meta name="robots" content="noindex, nofollow"/>
 <title>שלום יאיר עמר | משרד עורכי דין</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<!-- ▸ Performance: preconnect to font servers -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet"/>
@@ -346,6 +349,97 @@
   body.menu-open #hamburger span:nth-child(2) { opacity: 0; }
   body.menu-open #hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+  /* ══════════════════════════════════
+     Custom Accessibility Panel
+  ══════════════════════════════════ */
+  #a11y-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 9997;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1e3a5c 0%, #0F1B2D 100%);
+    border: 1.5px solid rgba(201,160,70,0.45);
+    box-shadow: 0 4px 18px rgba(15,27,45,0.28);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  #a11y-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(15,27,45,0.38), 0 0 0 5px rgba(201,160,70,0.12);
+  }
+  #a11y-fab:focus-visible { outline: 2px solid #C9A046; outline-offset: 3px; }
+
+  #a11y-panel {
+    position: fixed;
+    bottom: 5rem;
+    left: 1.5rem;
+    z-index: 9998;
+    width: 272px;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 24px 64px rgba(15,27,45,0.14), 0 4px 16px rgba(15,27,45,0.07);
+    border: 1px solid rgba(15,27,45,0.06);
+    padding: 1.1rem 1.1rem 0.9rem;
+    direction: rtl;
+    display: none;
+    transform-origin: bottom left;
+    animation: panelIn 0.18s ease;
+  }
+  #a11y-panel.open { display: block; }
+  @keyframes panelIn {
+    from { opacity:0; transform: scale(0.92) translateY(8px); }
+    to   { opacity:1; transform: scale(1)    translateY(0);   }
+  }
+
+  .a11y-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 0.58rem 0.7rem;
+    border-radius: 0.55rem;
+    border: 1px solid rgba(15,27,45,0.08);
+    background: #f8f7f4;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.82rem; color: #0F1B2D;
+    text-align: right; margin-bottom: 0.42rem;
+  }
+  .a11y-toggle:last-of-type { margin-bottom: 0; }
+  .a11y-toggle:hover { background:#f0eeea; border-color:rgba(201,160,70,0.30); }
+  .a11y-toggle.active {
+    background: #0F1B2D; color: #fff;
+    border-color: #0F1B2D;
+  }
+  .a11y-toggle.active .toggle-pip { background: #C9A046; }
+
+  .toggle-pip {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #c8d0d8; flex-shrink: 0; margin-left: 0.4rem;
+    transition: background 0.18s;
+  }
+
+  /* ── Body modifier classes ── */
+  body.a11y-large-text { font-size: 110% !important; }
+
+  body.a11y-high-contrast {
+    filter: grayscale(1) contrast(1.5) !important;
+  }
+
+  body.a11y-underline-links a:not([class*="btn"]):not(.mobile-nav-link):not(.nav-link) {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+  }
+
+  body.a11y-readable-font,
+  body.a11y-readable-font h1,
+  body.a11y-readable-font h2,
+  body.a11y-readable-font h3,
+  body.a11y-readable-font .serif {
+    font-family: 'Manrope', Arial, sans-serif !important;
+  }
+
   /* ── Mobile sticky CTA ── */
   .mobile-sticky-cta {
     position: fixed;
@@ -381,7 +475,7 @@
 
     <!-- Logo -->
     <a href="#" class="flex items-center gap-4 flex-shrink-0">
-      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-9 w-auto"/>
+      <img src="logo.svg" alt="לוגו משרד עורכי דין שלום יאיר עמר" class="h-9 w-auto" width="160" height="36" decoding="async"/>
       <div class="hidden sm:block">
         <div class="logo-name">שלום יאיר עמר</div>
         <div class="logo-sub">Law Office</div>
@@ -524,7 +618,10 @@
           <div class="corner-br"></div>
           <img src="shalom.jpg"
                alt="עורך הדין שלום יאיר עמר יושב ליד שולחן עבודה במשרדו, מאחוריו ספריית ספרי משפט ולוחית שם זהובה"
-               class="w-full aspect-[4/5] object-cover block" style="object-position:top center;"/>
+               class="w-full aspect-[4/5] object-cover block"
+               style="object-position:top center;"
+               fetchpriority="high" loading="eager" decoding="sync"
+               width="480" height="600"/>
 
           <!-- Bottom overlay with name (stays dark — on top of photo) -->
           <div class="absolute bottom-0 inset-x-0 z-10 px-6 py-5"
@@ -588,7 +685,8 @@
         <div class="relative z-10 overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAJJax1EH2-1kHxXWH1tsIzpodrGXuST_xh614MmIlFglqJr0J7GNJe7VGwKClGgVmbdes266eBk2h2FSF__zwC-cY7RXKoqJ9XeBQwZcopNnpFmhlh0tSum3kwQ5DXbWv7bv4iQEigV7dey3QwW360Dlhw-vJm4x0u1pBDGfsKpS8q2GrEhmXsUS5YWGEoTu9WIjFl1LliRpHlVO_XC3M-reDthpYEGOEeuwxfIqRw2m3wgX69vf1k5-BJt8EhPwFjNupmsesw8kT"
                alt="ספריית ספרי משפט עם כריכות עור בגוון חום, מדפים מרצפה לתקרה בתאורה חמה"
-               class="w-full object-cover" style="aspect-ratio:5/4;"/>
+               class="w-full object-cover" style="aspect-ratio:5/4;"
+               loading="lazy" decoding="async" width="600" height="480"/>
         </div>
       </div>
 
@@ -698,7 +796,9 @@
         <div class="relative overflow-hidden" style="border-radius:2rem;box-shadow:0 20px 70px rgba(15,27,45,0.09);">
           <img src="shalom1.jpg"
                alt="פורטרט מקצועי של עורך הדין שלום יאיר עמר לבוש חולצה לבנה ועניבה כהה"
-               class="team-photo w-full block" style="aspect-ratio:4/5;object-fit:cover;object-position:top center;mix-blend-mode:multiply;"/>
+               class="team-photo w-full block"
+               style="aspect-ratio:4/5;object-fit:cover;object-position:top center;mix-blend-mode:multiply;"
+               loading="lazy" decoding="async" width="480" height="600"/>
         </div>
       </div>
 
@@ -829,7 +929,8 @@
       <article class="blog-card cursor-pointer group fade-up">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzgwRdNQPExxLI7OuWyK4UZRiexW2bD68TluG7ocSNpJR2JCdfipByVoZa5pEvwbl-xh03r69uO4uN72CmF5dinb2U8JXwYxdShW2WGmhMb6Mihr2USpAixpt0WHJuiN22K8v_o6ZOXLWK-GLVTNgGiP7Nrzg5CmirGt51NC2prFJvKP_j5EHld_NEgt61Yb_yATdDJzFHIZMn0-Bji5KcNLUCS0lJt0vfd3DXAjer9uqY_FIfiyLVRCQecUI_rWtuX0ax6ydmo61a"
-               alt="בניין מגורים מודרני המשתקף בשמי שקיעה כתומים-כחולים" class="blog-img"/>
+               alt="בניין מגורים מודרני המשתקף בשמי שקיעה כתומים-כחולים"
+               class="blog-img" loading="lazy" decoding="async" width="600" height="338"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -854,7 +955,8 @@
       <article class="blog-card cursor-pointer group fade-up delay-100">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzsSothEv5hGWB10nPhiUBdJMwzVzz6t40Ojrm9opnV7YnXqCExBHDnhXyUJeUuVjYWwZJd-0qAC-VYoC6i46oQL6vKU2amko-TpKGqrVF2V6qBBt1mT_jOQHWdqPfpZNBwkcHBTlvhUTbvt8wveL_kAnGk1nN8oeRXV7tHrrNhOCIMTEFXhjjzsPEI3D0WtCX7Q3VZX6fr_Nc1H_x4CreDSCf3hMkh8XcZ6hL0QCkORAhupGBXU1_QMtO68xkzj9cA8N60KwbgeZE"
-               alt="מאזני צדק מברונזה מלוטשת על שולחן עץ כהה" class="blog-img"/>
+               alt="מאזני צדק מברונזה מלוטשת על שולחן עץ כהה"
+               class="blog-img" loading="lazy" decoding="async" width="600" height="338"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -879,7 +981,8 @@
       <article class="blog-card cursor-pointer group fade-up delay-200">
         <div class="blog-img-wrap aspect-video mb-6">
           <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0AgJr84sb3G7wpl4gcms6dYPbJHW8Cuj5A0y3isIgbObMwIsGfMWWw7thk1F01pJsddgod_F114f8rlQnKRWIMOB0EwTbj96mFPYeIhat9F8gPugqx6TCdFW6jQVop7qPmaHEDWLq8h9yz_hmvJLvI_JQ9loWEEdRpx8_quTF2v0lMmoZbnSfWTNHVTFwCD0pK4u5gwpzQtLw1ZdhGB7AeU8Tqy4DlqDQ1SK5t6h8cnWVjiubZzj9XL58GpGCgJo6OVmxwQecDstU"
-               alt="שולחן עבודה מסודר עם מסמכים משפטיים ועט נובע על משטח שיש לבן" class="blog-img"/>
+               alt="שולחן עבודה מסודר עם מסמכים משפטיים ועט נובע על משטח שיש לבן"
+               class="blog-img" loading="lazy" decoding="async" width="600" height="338"/>
         </div>
         <div class="text-right space-y-2 px-1">
           <div class="flex items-center gap-3 justify-end text-xs"
@@ -1185,13 +1288,147 @@
 <script>
   function openA11yModal(){const m=document.getElementById('a11y-modal');m.style.display='flex';document.body.style.overflow='hidden';setTimeout(()=>m.querySelector('button[aria-label]').focus(),50);}
   function closeA11yModal(){document.getElementById('a11y-modal').style.display='none';document.body.style.overflow='';}
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeA11yModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeA11yModal();closeA11yPanel();}});
 </script>
 
-<!-- UserWay Accessibility Widget -->
+<!-- Custom Accessibility Panel JS -->
 <script>
-  (function(d){var s=d.createElement("script");s.setAttribute("data-account","YOUR_USERWAY_ACCOUNT_ID");s.setAttribute("src","https://cdn.userway.org/widget.js");(d.body||d.head).appendChild(s);})(document);
+  /* ─── a11yToggle + a11yReset are global (called via onclick) ─── */
+  function a11yToggle(cls, btn) {
+    const on = document.body.classList.toggle(cls);
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
+    try { sessionStorage.setItem('a11y_' + cls, on ? '1' : '0'); } catch(_) {}
+  }
+
+  function a11yReset() {
+    ['a11y-large-text','a11y-high-contrast','a11y-underline-links','a11y-readable-font'].forEach(cls => {
+      document.body.classList.remove(cls);
+      try { sessionStorage.removeItem('a11y_' + cls); } catch(_) {}
+      const panel = document.getElementById('a11y-panel');
+      if (panel) {
+        const btn = panel.querySelector('[onclick*="' + cls + '"]');
+        if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-pressed','false'); }
+      }
+    });
+  }
+
+  function closeA11yPanel() {
+    const panel = document.getElementById('a11y-panel');
+    const fab   = document.getElementById('a11y-fab');
+    if (panel) panel.classList.remove('open');
+    if (fab)   fab.setAttribute('aria-expanded','false');
+  }
+
+  /* ─── Wire up events after DOM is ready ─── */
+  document.addEventListener('DOMContentLoaded', function () {
+    const fab   = document.getElementById('a11y-fab');
+    const panel = document.getElementById('a11y-panel');
+    const close = document.getElementById('closeA11yPanel');
+
+    if (!fab || !panel || !close) return;
+
+    function openPanel() {
+      panel.classList.add('open');
+      fab.setAttribute('aria-expanded','true');
+      close.focus();
+    }
+
+    fab.addEventListener('click', () =>
+      panel.classList.contains('open') ? closeA11yPanel() : openPanel()
+    );
+    close.addEventListener('click', closeA11yPanel);
+
+    // Close on outside click
+    document.addEventListener('click', e => {
+      if (panel.classList.contains('open') &&
+          !panel.contains(e.target) && e.target !== fab) {
+        closeA11yPanel();
+      }
+    });
+
+    /* ─── Restore sessionStorage settings ─── */
+    ['a11y-large-text','a11y-high-contrast','a11y-underline-links','a11y-readable-font'].forEach(cls => {
+      try {
+        if (sessionStorage.getItem('a11y_' + cls) === '1') {
+          document.body.classList.add(cls);
+          const btn = panel.querySelector('[onclick*="' + cls + '"]');
+          if (btn) { btn.classList.add('active'); btn.setAttribute('aria-pressed','true'); }
+        }
+      } catch(_) {}
+    });
+  });
 </script>
+
+<!-- ══════════════════════════════════════════
+     CUSTOM ACCESSIBILITY FAB + PANEL
+══════════════════════════════════════════ -->
+
+<!-- Floating button -->
+<button id="a11y-fab" aria-label="אפשרויות נגישות" aria-expanded="false" aria-controls="a11y-panel" aria-haspopup="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+       fill="none" stroke="#C9A046" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="5" r="2"/>
+    <path d="M12 9v7"/>
+    <path d="M8.5 11.5 12 9l3.5 2.5"/>
+    <path d="M9.5 16.5 12 16l2.5.5"/>
+    <path d="M9 20l3-4 3 4"/>
+  </svg>
+</button>
+
+<!-- Panel -->
+<div id="a11y-panel" role="region" aria-label="תפריט נגישות — הגדרות תצוגה">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:0.75rem;margin-bottom:0.75rem;border-bottom:1px solid rgba(15,27,45,0.07);">
+    <button id="closeA11yPanel" aria-label="סגור תפריט נגישות"
+            style="background:none;border:none;cursor:pointer;font-size:1rem;color:#aab0b8;line-height:1;padding:0.15rem 0.3rem;border-radius:4px;transition:color 0.15s;"
+            onmouseover="this.style.color='#0F1B2D'" onmouseout="this.style.color='#aab0b8'">✕</button>
+    <div style="text-align:right;">
+      <p style="font-family:'Noto Serif',serif;font-size:0.88rem;font-weight:700;color:#0F1B2D;margin:0;">הגדרות נגישות</p>
+      <p style="font-size:0.7rem;color:#9aabbb;margin:0.15rem 0 0;">התאמה אישית לחוויית הגלישה</p>
+    </div>
+  </div>
+
+  <!-- Toggle: Large text -->
+  <button class="a11y-toggle" id="tog-text"
+          onclick="a11yToggle('a11y-large-text', this)" aria-pressed="false">
+    <span class="toggle-pip"></span>
+    <span>הגדלת טקסט</span>
+    <span aria-hidden="true" style="font-size:1.1rem;font-weight:700;margin-right:auto;margin-left:0.3rem;">Aa</span>
+  </button>
+
+  <!-- Toggle: High contrast -->
+  <button class="a11y-toggle" id="tog-contrast"
+          onclick="a11yToggle('a11y-high-contrast', this)" aria-pressed="false">
+    <span class="toggle-pip"></span>
+    <span>ניגודיות גבוהה</span>
+    <span aria-hidden="true" style="font-size:1.2rem;margin-right:auto;margin-left:0.3rem;">◑</span>
+  </button>
+
+  <!-- Toggle: Underline links -->
+  <button class="a11y-toggle" id="tog-underline"
+          onclick="a11yToggle('a11y-underline-links', this)" aria-pressed="false">
+    <span class="toggle-pip"></span>
+    <span>הדגשת קישורים</span>
+    <span aria-hidden="true" style="font-size:0.95rem;text-decoration:underline;margin-right:auto;margin-left:0.3rem;">קישור</span>
+  </button>
+
+  <!-- Toggle: Readable font -->
+  <button class="a11y-toggle" id="tog-font"
+          onclick="a11yToggle('a11y-readable-font', this)" aria-pressed="false">
+    <span class="toggle-pip"></span>
+    <span>פונט קריא</span>
+    <span aria-hidden="true" style="font-size:0.75rem;font-family:Arial,sans-serif;margin-right:auto;margin-left:0.3rem;">Arial</span>
+  </button>
+
+  <!-- Reset -->
+  <button onclick="a11yReset()"
+          style="width:100%;margin-top:0.6rem;padding:0.42rem;border-radius:0.5rem;border:1px solid rgba(15,27,45,0.08);background:transparent;font-size:0.75rem;color:#9aabbb;cursor:pointer;font-family:'Manrope',sans-serif;transition:background 0.15s;"
+          onmouseover="this.style.background='#f8f7f4'" onmouseout="this.style.background='transparent'">
+    ↺ &nbsp;איפוס הגדרות
+  </button>
+</div>
 
 <!-- ══════════════════════════════════════════
      CONTACT FORM — Web3Forms
