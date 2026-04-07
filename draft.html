@@ -1326,122 +1326,6 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeA11yModal();closeA11yPanel();}});
 </script>
 
-<!-- Custom Accessibility Panel JS -->
-<script>
-  /* ══════════════════════════════════════════
-     ACCESSIBILITY PANEL — GLOBAL FUNCTIONS
-     (called from onclick attributes in HTML)
-  ══════════════════════════════════════════ */
-
-  /* Toggle a body class; optionally deactivate an exclusive counterpart */
-  function a11yBodyToggle(cls, exclusive, btn) {
-    // Deactivate exclusive class if on
-    if (exclusive && document.body.classList.contains(exclusive)) {
-      document.body.classList.remove(exclusive);
-      try { sessionStorage.removeItem('a11y_' + exclusive); } catch(_) {}
-      const panel = document.getElementById('a11y-panel');
-      if (panel) {
-        panel.querySelectorAll('.a11y-btn').forEach(b => {
-          if ((b.getAttribute('onclick') || '').includes("'" + exclusive + "'")) {
-            b.classList.remove('active');
-            b.setAttribute('aria-pressed', 'false');
-          }
-        });
-      }
-    }
-    const on = document.body.classList.toggle(cls);
-    btn.classList.toggle('active', on);
-    btn.setAttribute('aria-pressed', String(on));
-    try { sessionStorage.setItem('a11y_' + cls, on ? '1' : '0'); } catch(_) {}
-  }
-
-  /* Font size — applies to <html> so rem-based sizes scale correctly */
-  var _fontDir = 0; // -1 = small, 0 = normal, 1 = large
-  function a11yFontSize(dir, btn) {
-    const next = Math.max(-1, Math.min(1, _fontDir + dir));
-    if (next === _fontDir && _fontDir !== 0) { return; } // already at limit
-
-    // Clear both classes
-    document.documentElement.classList.remove('a11y-font-sm', 'a11y-font-lg');
-    _fontDir = next;
-    if (_fontDir === -1) document.documentElement.classList.add('a11y-font-sm');
-    if (_fontDir ===  1) document.documentElement.classList.add('a11y-font-lg');
-
-    // Update both button states
-    const smBtn = document.getElementById('tog-font-sm');
-    const lgBtn = document.getElementById('tog-font-lg');
-    if (smBtn) { smBtn.classList.toggle('active', _fontDir < 0); smBtn.setAttribute('aria-pressed', String(_fontDir < 0)); }
-    if (lgBtn) { lgBtn.classList.toggle('active', _fontDir > 0); lgBtn.setAttribute('aria-pressed', String(_fontDir > 0)); }
-    try { sessionStorage.setItem('a11y_font', _fontDir); } catch(_) {}
-  }
-
-  /* Reset all */
-  function a11yReset() {
-    const BODY_CLASSES = ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'];
-    BODY_CLASSES.forEach(cls => {
-      document.body.classList.remove(cls);
-      try { sessionStorage.removeItem('a11y_' + cls); } catch(_) {}
-    });
-    document.documentElement.classList.remove('a11y-font-sm','a11y-font-lg');
-    _fontDir = 0;
-    try { sessionStorage.removeItem('a11y_font'); } catch(_) {}
-    document.querySelectorAll('.a11y-btn').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-pressed','false');
-    });
-  }
-
-  /* Close panel (also called from Escape / accessibility modal open) */
-  function closeA11yPanel() {
-    const panel = document.getElementById('a11y-panel');
-    const fab   = document.getElementById('a11y-fab');
-    if (panel) panel.classList.remove('open');
-    if (fab)   fab.setAttribute('aria-expanded','false');
-  }
-
-  /* ── Wire up events + restore session ── */
-  document.addEventListener('DOMContentLoaded', function () {
-    const fab   = document.getElementById('a11y-fab');
-    const panel = document.getElementById('a11y-panel');
-    const close = document.getElementById('closeA11yPanel');
-    if (!fab || !panel || !close) return;
-
-    function openPanel() {
-      panel.classList.add('open');
-      fab.setAttribute('aria-expanded','true');
-      close.focus();
-    }
-    fab.addEventListener('click', () =>
-      panel.classList.contains('open') ? closeA11yPanel() : openPanel()
-    );
-    close.addEventListener('click', closeA11yPanel);
-    document.addEventListener('click', e => {
-      if (panel.classList.contains('open') && !panel.contains(e.target) && e.target !== fab)
-        closeA11yPanel();
-    });
-
-    /* Restore body classes */
-    ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'].forEach(cls => {
-      try {
-        if (sessionStorage.getItem('a11y_' + cls) === '1') {
-          document.body.classList.add(cls);
-          panel.querySelectorAll('.a11y-btn').forEach(b => {
-            if ((b.getAttribute('onclick') || '').includes("'" + cls + "'")) {
-              b.classList.add('active'); b.setAttribute('aria-pressed','true');
-            }
-          });
-        }
-      } catch(_) {}
-    });
-
-    /* Restore font size */
-    try {
-      const saved = parseInt(sessionStorage.getItem('a11y_font') || '0');
-      if (saved !== 0) { _fontDir = 0; a11yFontSize(saved, null); }
-    } catch(_) {}
-  });
-</script>
-
 <!-- ══════════════════════════════════════════
      CUSTOM ACCESSIBILITY FAB + PANEL
 ══════════════════════════════════════════ -->
@@ -1518,6 +1402,128 @@
   </button>
 
 </div>
+
+<!-- Custom Accessibility Panel JS -->
+<script>
+  /* ══════════════════════════════════════════
+     ACCESSIBILITY PANEL — GLOBAL FUNCTIONS
+     (called from onclick attributes in HTML)
+  ══════════════════════════════════════════ */
+
+  /* Toggle a body class; optionally deactivate an exclusive counterpart */
+  function a11yBodyToggle(cls, exclusive, btn) {
+    // Deactivate exclusive class if on
+    if (exclusive && document.body.classList.contains(exclusive)) {
+      document.body.classList.remove(exclusive);
+      try { sessionStorage.removeItem('a11y_' + exclusive); } catch(_) {}
+      const panel = document.getElementById('a11y-panel');
+      if (panel) {
+        panel.querySelectorAll('.a11y-btn').forEach(b => {
+          if ((b.getAttribute('onclick') || '').includes("'" + exclusive + "'")) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+    }
+    const on = document.body.classList.toggle(cls);
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
+    try { sessionStorage.setItem('a11y_' + cls, on ? '1' : '0'); } catch(_) {}
+  }
+
+  /* Font size — applies to <html> so rem-based sizes scale correctly */
+  var _fontDir = 0; // -1 = small, 0 = normal, 1 = large
+  function a11yFontSize(dir, btn) {
+    const next = Math.max(-1, Math.min(1, _fontDir + dir));
+    if (next === _fontDir && _fontDir !== 0) { return; } // already at limit
+
+    // Clear both classes
+    document.documentElement.classList.remove('a11y-font-sm', 'a11y-font-lg');
+    _fontDir = next;
+    if (_fontDir === -1) document.documentElement.classList.add('a11y-font-sm');
+    if (_fontDir ===  1) document.documentElement.classList.add('a11y-font-lg');
+
+    // Update both button states
+    const smBtn = document.getElementById('tog-font-sm');
+    const lgBtn = document.getElementById('tog-font-lg');
+    if (smBtn) { smBtn.classList.toggle('active', _fontDir < 0); smBtn.setAttribute('aria-pressed', String(_fontDir < 0)); }
+    if (lgBtn) { lgBtn.classList.toggle('active', _fontDir > 0); lgBtn.setAttribute('aria-pressed', String(_fontDir > 0)); }
+    try { sessionStorage.setItem('a11y_font', _fontDir); } catch(_) {}
+  }
+
+  /* Reset all */
+  function a11yReset() {
+    const BODY_CLASSES = ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'];
+    BODY_CLASSES.forEach(cls => {
+      document.body.classList.remove(cls);
+      try { sessionStorage.removeItem('a11y_' + cls); } catch(_) {}
+    });
+    document.documentElement.classList.remove('a11y-font-sm','a11y-font-lg');
+    _fontDir = 0;
+    try { sessionStorage.removeItem('a11y_font'); } catch(_) {}
+    document.querySelectorAll('.a11y-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed','false');
+    });
+  }
+
+  /* Close panel (also called from Escape / accessibility modal open) */
+  function closeA11yPanel() {
+    const panel = document.getElementById('a11y-panel');
+    const fab   = document.getElementById('a11y-fab');
+    if (panel) panel.classList.remove('open');
+    if (fab)   fab.setAttribute('aria-expanded','false');
+  }
+
+  /* ── Wire up events + restore session ──
+     NOTE: script is at bottom of <body> so DOM is already ready.
+     Do NOT use DOMContentLoaded — it has already fired by this point. ── */
+  (function initA11yPanel() {
+    const fab   = document.getElementById('a11y-fab');
+    const panel = document.getElementById('a11y-panel');
+    const close = document.getElementById('closeA11yPanel');
+    if (!fab || !panel || !close) return;
+
+    function openPanel() {
+      panel.classList.add('open');
+      fab.setAttribute('aria-expanded','true');
+      close.focus();
+    }
+
+    fab.addEventListener('click', function(e) {
+      e.stopPropagation();
+      panel.classList.contains('open') ? closeA11yPanel() : openPanel();
+    });
+    close.addEventListener('click', closeA11yPanel);
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (panel.classList.contains('open') && !panel.contains(e.target) && e.target !== fab)
+        closeA11yPanel();
+    });
+
+    /* Restore body classes */
+    ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'].forEach(function(cls) {
+      try {
+        if (sessionStorage.getItem('a11y_' + cls) === '1') {
+          document.body.classList.add(cls);
+          panel.querySelectorAll('.a11y-btn').forEach(function(b) {
+            if ((b.getAttribute('onclick') || '').includes("'" + cls + "'")) {
+              b.classList.add('active'); b.setAttribute('aria-pressed','true');
+            }
+          });
+        }
+      } catch(_) {}
+    });
+
+    /* Restore font size */
+    try {
+      var saved = parseInt(sessionStorage.getItem('a11y_font') || '0');
+      if (saved !== 0) { _fontDir = 0; a11yFontSize(saved, null); }
+    } catch(_) {}
+  })();
+</script>
 
 <!-- ══════════════════════════════════════════
      CONTACT FORM — Web3Forms
