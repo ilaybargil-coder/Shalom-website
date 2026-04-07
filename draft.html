@@ -372,15 +372,21 @@
   #a11y-fab:hover { transform: scale(1.1); box-shadow: 0 6px 26px rgba(26,86,219,0.60); }
   #a11y-fab:focus-visible { outline: 3px solid #C9A046; outline-offset: 3px; }
 
-  /* Keep FAB legible when body filter is active */
-  body.a11y-grayscale #a11y-fab,
-  body.a11y-invert    #a11y-fab {
-    background: #fff !important;
-    border: 2px solid #222 !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.30) !important;
+  /* ── Filter overlays (mix-blend-mode) ──
+     Using overlays instead of filter on <body> prevents breaking
+     position:fixed descendants (FAB, panel, nav, modal). */
+  #a11y-grayscale-overlay,
+  #a11y-invert-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 99990;
+    background: #fff;
   }
-  body.a11y-grayscale #a11y-fab .material-symbols-outlined,
-  body.a11y-invert    #a11y-fab .material-symbols-outlined { color: #111 !important; }
+  #a11y-grayscale-overlay { mix-blend-mode: color; }
+  #a11y-invert-overlay    { mix-blend-mode: difference; }
+  body.a11y-grayscale #a11y-grayscale-overlay { display: block; }
+  body.a11y-invert    #a11y-invert-overlay    { display: block; }
 
   /* Panel — desktop */
   #a11y-panel {
@@ -448,11 +454,7 @@
   html.a11y-font-sm { font-size: 87% !important; }
   html.a11y-font-lg { font-size: 115% !important; }
 
-  /* Grayscale */
-  body.a11y-grayscale { filter: grayscale(1) !important; }
-
-  /* Invert */
-  body.a11y-invert { filter: invert(1) hue-rotate(180deg) !important; }
+  /* Grayscale + Invert — handled via overlay divs above (not body filter) */
 
   /* Highlight headings */
   body.a11y-highlight-headings h1,
@@ -1329,6 +1331,10 @@
 <!-- ══════════════════════════════════════════
      CUSTOM ACCESSIBILITY FAB + PANEL
 ══════════════════════════════════════════ -->
+
+<!-- Accessibility filter overlays — mix-blend-mode; never breaks position:fixed -->
+<div id="a11y-grayscale-overlay" aria-hidden="true"></div>
+<div id="a11y-invert-overlay"    aria-hidden="true"></div>
 
 <!-- Floating button -->
 <button id="a11y-fab" aria-label="פתח תפריט נגישות" aria-expanded="false"
