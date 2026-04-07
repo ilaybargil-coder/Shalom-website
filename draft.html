@@ -352,92 +352,127 @@
   /* ══════════════════════════════════
      Custom Accessibility Panel
   ══════════════════════════════════ */
+
+  /* FAB */
   #a11y-fab {
     position: fixed;
-    bottom: 1.5rem;
-    left: 1.5rem;
+    bottom: 1.5rem; left: 1.5rem;
     z-index: 9997;
-    width: 46px; height: 46px;
+    width: 48px; height: 48px;
     border-radius: 50%;
-    background: linear-gradient(145deg, #1e3a5c 0%, #0F1B2D 100%);
-    border: 1.5px solid rgba(201,160,70,0.45);
-    box-shadow: 0 4px 18px rgba(15,27,45,0.28);
+    background: #1a56db;
+    border: none;
+    box-shadow: 0 4px 18px rgba(26,86,219,0.45);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.2s, box-shadow 0.2s;
+    color: #fff;
   }
-  #a11y-fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(15,27,45,0.38), 0 0 0 5px rgba(201,160,70,0.12);
-  }
-  #a11y-fab:focus-visible { outline: 2px solid #C9A046; outline-offset: 3px; }
+  #a11y-fab .material-symbols-outlined { font-size: 26px !important; color: #fff; }
+  #a11y-fab:hover { transform: scale(1.1); box-shadow: 0 6px 26px rgba(26,86,219,0.60); }
+  #a11y-fab:focus-visible { outline: 3px solid #C9A046; outline-offset: 3px; }
 
+  /* Keep FAB legible when body filter is active */
+  body.a11y-grayscale #a11y-fab,
+  body.a11y-invert    #a11y-fab {
+    background: #fff !important;
+    border: 2px solid #222 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.30) !important;
+  }
+  body.a11y-grayscale #a11y-fab .material-symbols-outlined,
+  body.a11y-invert    #a11y-fab .material-symbols-outlined { color: #111 !important; }
+
+  /* Panel — desktop */
   #a11y-panel {
     position: fixed;
-    bottom: 5rem;
-    left: 1.5rem;
+    bottom: 5rem; left: 1.5rem;
     z-index: 9998;
-    width: 272px;
-    background: #ffffff;
+    width: 300px;
+    max-height: 86vh;
+    overflow-y: auto;
+    background: #fff;
     border-radius: 1.25rem;
-    box-shadow: 0 24px 64px rgba(15,27,45,0.14), 0 4px 16px rgba(15,27,45,0.07);
-    border: 1px solid rgba(15,27,45,0.06);
-    padding: 1.1rem 1.1rem 0.9rem;
+    box-shadow: 0 20px 60px rgba(15,27,45,0.16), 0 4px 18px rgba(15,27,45,0.08);
+    border: 1px solid rgba(15,27,45,0.07);
     direction: rtl;
     display: none;
-    transform-origin: bottom left;
-    animation: panelIn 0.18s ease;
   }
-  #a11y-panel.open { display: block; }
+  #a11y-panel.open { display: block; animation: panelIn 0.2s ease; }
   @keyframes panelIn {
-    from { opacity:0; transform: scale(0.92) translateY(8px); }
-    to   { opacity:1; transform: scale(1)    translateY(0);   }
+    from { opacity:0; transform: scale(0.94) translateY(10px); }
+    to   { opacity:1; transform: scale(1)    translateY(0); }
   }
 
-  .a11y-toggle {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; padding: 0.58rem 0.7rem;
-    border-radius: 0.55rem;
-    border: 1px solid rgba(15,27,45,0.08);
-    background: #f8f7f4;
-    cursor: pointer;
-    transition: background 0.18s, border-color 0.18s;
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.82rem; color: #0F1B2D;
-    text-align: right; margin-bottom: 0.42rem;
-  }
-  .a11y-toggle:last-of-type { margin-bottom: 0; }
-  .a11y-toggle:hover { background:#f0eeea; border-color:rgba(201,160,70,0.30); }
-  .a11y-toggle.active {
-    background: #0F1B2D; color: #fff;
-    border-color: #0F1B2D;
-  }
-  .a11y-toggle.active .toggle-pip { background: #C9A046; }
-
-  .toggle-pip {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #c8d0d8; flex-shrink: 0; margin-left: 0.4rem;
-    transition: background 0.18s;
+  /* Panel — mobile bottom sheet */
+  @media (max-width: 767px) {
+    #a11y-panel { left:0; right:0; bottom:0; width:100%; border-radius:1.25rem 1.25rem 0 0; max-height:88vh; }
+    #a11y-panel.open { animation: sheetUp 0.22s ease; }
+    @keyframes sheetUp {
+      from { opacity:0; transform: translateY(40px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
   }
 
-  /* ── Body modifier classes ── */
-  body.a11y-large-text { font-size: 110% !important; }
+  /* Panel internals */
+  .a11y-ph { padding: 1rem 1.1rem 0.8rem; border-bottom: 1px solid rgba(15,27,45,0.07); position: sticky; top:0; background:#fff; border-radius: 1.25rem 1.25rem 0 0; z-index:1; display:flex; align-items:center; justify-content:space-between; }
+  .a11y-ph-title { font-family:'Noto Serif',serif; font-size:1rem; font-weight:700; color:#0F1B2D; }
+  .a11y-ph-icon  { font-size:28px !important; color:#1a56db; }
+  .a11y-ph-close { background:none; border:none; cursor:pointer; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:50%; color:#9aabbb; font-size:1rem; transition:background 0.15s,color 0.15s; }
+  .a11y-ph-close:hover { background:#f0eeea; color:#0F1B2D; }
 
-  body.a11y-high-contrast {
-    filter: grayscale(1) contrast(1.5) !important;
+  .a11y-sec { padding: 0.65rem 1.1rem 0.3rem; }
+  .a11y-sec-lbl { font-family:'Manrope',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.13em; text-transform:uppercase; color:#9aabbb; }
+
+  .a11y-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.45rem; padding:0.35rem 1.1rem 0.8rem; }
+
+  .a11y-btn {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.35rem; padding:0.7rem 0.4rem;
+    border:1.5px solid rgba(15,27,45,0.10); border-radius:0.7rem;
+    background:#f8f7f4; cursor:pointer;
+    transition:background 0.15s, border-color 0.15s, transform 0.1s;
+    font-family:'Manrope',sans-serif; font-size:0.73rem; font-weight:500;
+    color:#0F1B2D; text-align:center; line-height:1.25;
   }
+  .a11y-btn .material-symbols-outlined { font-size:22px !important; color:#4b5563; transition:color 0.15s; }
+  .a11y-btn:hover { background:#f0eeea; border-color:rgba(15,27,45,0.2); transform:translateY(-1px); }
+  .a11y-btn.active { background:#0F1B2D; border-color:#0F1B2D; color:#fff; }
+  .a11y-btn.active .material-symbols-outlined { color:#C9A046; }
 
+  .a11y-stmt { display:block; width:100%; text-align:center; padding:0.65rem 1rem 0.85rem; font-size:0.8rem; font-weight:600; color:#1a56db; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:'Manrope',sans-serif; background:none; border:none; border-top:1px solid rgba(15,27,45,0.07); }
+  .a11y-stmt:hover { color:#1240ab; }
+
+  /* ── Modifier classes ── */
+
+  /* Font size on <html> so rem units scale correctly */
+  html.a11y-font-sm { font-size: 87% !important; }
+  html.a11y-font-lg { font-size: 115% !important; }
+
+  /* Grayscale */
+  body.a11y-grayscale { filter: grayscale(1) !important; }
+
+  /* Invert */
+  body.a11y-invert { filter: invert(1) hue-rotate(180deg) !important; }
+
+  /* Highlight headings */
+  body.a11y-highlight-headings h1,
+  body.a11y-highlight-headings h2,
+  body.a11y-highlight-headings h3,
+  body.a11y-highlight-headings h4 { outline: 2.5px solid #1a56db !important; outline-offset: 4px; }
+
+  /* Underline links */
   body.a11y-underline-links a:not([class*="btn"]):not(.mobile-nav-link):not(.nav-link) {
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
+    text-decoration: underline !important; text-underline-offset: 3px;
   }
 
-  body.a11y-readable-font,
-  body.a11y-readable-font h1,
-  body.a11y-readable-font h2,
-  body.a11y-readable-font h3,
-  body.a11y-readable-font .serif {
-    font-family: 'Manrope', Arial, sans-serif !important;
+  /* Stop animations */
+  body.a11y-no-animations *,
+  body.a11y-no-animations *::before,
+  body.a11y-no-animations *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 
   /* ── Mobile sticky CTA ── */
@@ -1293,26 +1328,70 @@
 
 <!-- Custom Accessibility Panel JS -->
 <script>
-  /* ─── a11yToggle + a11yReset are global (called via onclick) ─── */
-  function a11yToggle(cls, btn) {
+  /* ══════════════════════════════════════════
+     ACCESSIBILITY PANEL — GLOBAL FUNCTIONS
+     (called from onclick attributes in HTML)
+  ══════════════════════════════════════════ */
+
+  /* Toggle a body class; optionally deactivate an exclusive counterpart */
+  function a11yBodyToggle(cls, exclusive, btn) {
+    // Deactivate exclusive class if on
+    if (exclusive && document.body.classList.contains(exclusive)) {
+      document.body.classList.remove(exclusive);
+      try { sessionStorage.removeItem('a11y_' + exclusive); } catch(_) {}
+      const panel = document.getElementById('a11y-panel');
+      if (panel) {
+        panel.querySelectorAll('.a11y-btn').forEach(b => {
+          if ((b.getAttribute('onclick') || '').includes("'" + exclusive + "'")) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+    }
     const on = document.body.classList.toggle(cls);
     btn.classList.toggle('active', on);
     btn.setAttribute('aria-pressed', String(on));
     try { sessionStorage.setItem('a11y_' + cls, on ? '1' : '0'); } catch(_) {}
   }
 
+  /* Font size — applies to <html> so rem-based sizes scale correctly */
+  var _fontDir = 0; // -1 = small, 0 = normal, 1 = large
+  function a11yFontSize(dir, btn) {
+    const next = Math.max(-1, Math.min(1, _fontDir + dir));
+    if (next === _fontDir && _fontDir !== 0) { return; } // already at limit
+
+    // Clear both classes
+    document.documentElement.classList.remove('a11y-font-sm', 'a11y-font-lg');
+    _fontDir = next;
+    if (_fontDir === -1) document.documentElement.classList.add('a11y-font-sm');
+    if (_fontDir ===  1) document.documentElement.classList.add('a11y-font-lg');
+
+    // Update both button states
+    const smBtn = document.getElementById('tog-font-sm');
+    const lgBtn = document.getElementById('tog-font-lg');
+    if (smBtn) { smBtn.classList.toggle('active', _fontDir < 0); smBtn.setAttribute('aria-pressed', String(_fontDir < 0)); }
+    if (lgBtn) { lgBtn.classList.toggle('active', _fontDir > 0); lgBtn.setAttribute('aria-pressed', String(_fontDir > 0)); }
+    try { sessionStorage.setItem('a11y_font', _fontDir); } catch(_) {}
+  }
+
+  /* Reset all */
   function a11yReset() {
-    ['a11y-large-text','a11y-high-contrast','a11y-underline-links','a11y-readable-font'].forEach(cls => {
+    const BODY_CLASSES = ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'];
+    BODY_CLASSES.forEach(cls => {
       document.body.classList.remove(cls);
       try { sessionStorage.removeItem('a11y_' + cls); } catch(_) {}
-      const panel = document.getElementById('a11y-panel');
-      if (panel) {
-        const btn = panel.querySelector('[onclick*="' + cls + '"]');
-        if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-pressed','false'); }
-      }
+    });
+    document.documentElement.classList.remove('a11y-font-sm','a11y-font-lg');
+    _fontDir = 0;
+    try { sessionStorage.removeItem('a11y_font'); } catch(_) {}
+    document.querySelectorAll('.a11y-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed','false');
     });
   }
 
+  /* Close panel (also called from Escape / accessibility modal open) */
   function closeA11yPanel() {
     const panel = document.getElementById('a11y-panel');
     const fab   = document.getElementById('a11y-fab');
@@ -1320,12 +1399,11 @@
     if (fab)   fab.setAttribute('aria-expanded','false');
   }
 
-  /* ─── Wire up events after DOM is ready ─── */
+  /* ── Wire up events + restore session ── */
   document.addEventListener('DOMContentLoaded', function () {
     const fab   = document.getElementById('a11y-fab');
     const panel = document.getElementById('a11y-panel');
     const close = document.getElementById('closeA11yPanel');
-
     if (!fab || !panel || !close) return;
 
     function openPanel() {
@@ -1333,30 +1411,34 @@
       fab.setAttribute('aria-expanded','true');
       close.focus();
     }
-
     fab.addEventListener('click', () =>
       panel.classList.contains('open') ? closeA11yPanel() : openPanel()
     );
     close.addEventListener('click', closeA11yPanel);
-
-    // Close on outside click
     document.addEventListener('click', e => {
-      if (panel.classList.contains('open') &&
-          !panel.contains(e.target) && e.target !== fab) {
+      if (panel.classList.contains('open') && !panel.contains(e.target) && e.target !== fab)
         closeA11yPanel();
-      }
     });
 
-    /* ─── Restore sessionStorage settings ─── */
-    ['a11y-large-text','a11y-high-contrast','a11y-underline-links','a11y-readable-font'].forEach(cls => {
+    /* Restore body classes */
+    ['a11y-grayscale','a11y-invert','a11y-highlight-headings','a11y-underline-links','a11y-no-animations'].forEach(cls => {
       try {
         if (sessionStorage.getItem('a11y_' + cls) === '1') {
           document.body.classList.add(cls);
-          const btn = panel.querySelector('[onclick*="' + cls + '"]');
-          if (btn) { btn.classList.add('active'); btn.setAttribute('aria-pressed','true'); }
+          panel.querySelectorAll('.a11y-btn').forEach(b => {
+            if ((b.getAttribute('onclick') || '').includes("'" + cls + "'")) {
+              b.classList.add('active'); b.setAttribute('aria-pressed','true');
+            }
+          });
         }
       } catch(_) {}
     });
+
+    /* Restore font size */
+    try {
+      const saved = parseInt(sessionStorage.getItem('a11y_font') || '0');
+      if (saved !== 0) { _fontDir = 0; a11yFontSize(saved, null); }
+    } catch(_) {}
   });
 </script>
 
@@ -1365,69 +1447,76 @@
 ══════════════════════════════════════════ -->
 
 <!-- Floating button -->
-<button id="a11y-fab" aria-label="אפשרויות נגישות" aria-expanded="false" aria-controls="a11y-panel" aria-haspopup="true">
-  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
-       fill="none" stroke="#C9A046" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <circle cx="12" cy="5" r="2"/>
-    <path d="M12 9v7"/>
-    <path d="M8.5 11.5 12 9l3.5 2.5"/>
-    <path d="M9.5 16.5 12 16l2.5.5"/>
-    <path d="M9 20l3-4 3 4"/>
-  </svg>
+<button id="a11y-fab" aria-label="פתח תפריט נגישות" aria-expanded="false"
+        aria-controls="a11y-panel" aria-haspopup="dialog">
+  <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
 </button>
 
 <!-- Panel -->
-<div id="a11y-panel" role="region" aria-label="תפריט נגישות — הגדרות תצוגה">
+<div id="a11y-panel" role="dialog" aria-modal="true" aria-label="תפריט נגישות">
 
   <!-- Header -->
-  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:0.75rem;margin-bottom:0.75rem;border-bottom:1px solid rgba(15,27,45,0.07);">
-    <button id="closeA11yPanel" aria-label="סגור תפריט נגישות"
-            style="background:none;border:none;cursor:pointer;font-size:1rem;color:#aab0b8;line-height:1;padding:0.15rem 0.3rem;border-radius:4px;transition:color 0.15s;"
-            onmouseover="this.style.color='#0F1B2D'" onmouseout="this.style.color='#aab0b8'">✕</button>
-    <div style="text-align:right;">
-      <p style="font-family:'Noto Serif',serif;font-size:0.88rem;font-weight:700;color:#0F1B2D;margin:0;">הגדרות נגישות</p>
-      <p style="font-size:0.7rem;color:#9aabbb;margin:0.15rem 0 0;">התאמה אישית לחוויית הגלישה</p>
-    </div>
+  <div class="a11y-ph">
+    <button class="a11y-ph-close" id="closeA11yPanel" aria-label="סגור תפריט נגישות">✕</button>
+    <span class="a11y-ph-title">תפריט נגישות</span>
+    <span class="material-symbols-outlined a11y-ph-icon" aria-hidden="true">accessibility_new</span>
   </div>
 
-  <!-- Toggle: Large text -->
-  <button class="a11y-toggle" id="tog-text"
-          onclick="a11yToggle('a11y-large-text', this)" aria-pressed="false">
-    <span class="toggle-pip"></span>
-    <span>הגדלת טקסט</span>
-    <span aria-hidden="true" style="font-size:1.1rem;font-weight:700;margin-right:auto;margin-left:0.3rem;">Aa</span>
+  <!-- Section 1: Contrast -->
+  <div class="a11y-sec"><p class="a11y-sec-lbl">התאמת ניגודיות</p></div>
+  <div class="a11y-grid">
+    <button class="a11y-btn" id="tog-grayscale"
+            onclick="a11yBodyToggle('a11y-grayscale','a11y-invert',this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">contrast</span>
+      <span>גווני אפור</span>
+    </button>
+    <button class="a11y-btn" id="tog-invert"
+            onclick="a11yBodyToggle('a11y-invert','a11y-grayscale',this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">invert_colors</span>
+      <span>ניגודיות הפוכה</span>
+    </button>
+  </div>
+
+  <!-- Section 2: Content -->
+  <div class="a11y-sec"><p class="a11y-sec-lbl">התאמת תוכן</p></div>
+  <div class="a11y-grid">
+    <button class="a11y-btn" id="tog-font-sm"
+            onclick="a11yFontSize(-1,this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">text_decrease</span>
+      <span>הקטנת טקסט</span>
+    </button>
+    <button class="a11y-btn" id="tog-font-lg"
+            onclick="a11yFontSize(1,this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">text_increase</span>
+      <span>הגדלת טקסט</span>
+    </button>
+    <button class="a11y-btn" id="tog-headings"
+            onclick="a11yBodyToggle('a11y-highlight-headings',null,this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">title</span>
+      <span>הדגשת כותרות</span>
+    </button>
+    <button class="a11y-btn" id="tog-links"
+            onclick="a11yBodyToggle('a11y-underline-links',null,this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">format_underlined</span>
+      <span>הדגשת קישורים</span>
+    </button>
+    <button class="a11y-btn" id="tog-anim"
+            onclick="a11yBodyToggle('a11y-no-animations',null,this)" aria-pressed="false">
+      <span class="material-symbols-outlined" aria-hidden="true">motion_photos_off</span>
+      <span>עצירת אנימציות</span>
+    </button>
+    <button class="a11y-btn" onclick="a11yReset()" aria-label="איפוס כל הגדרות הנגישות">
+      <span class="material-symbols-outlined" aria-hidden="true">restart_alt</span>
+      <span>איפוס</span>
+    </button>
+  </div>
+
+  <!-- Footer link -->
+  <button class="a11y-stmt" onclick="closeA11yPanel();openA11yModal();"
+          aria-label="מעבר להצהרת הנגישות המלאה">
+    מעבר להצהרת נגישות
   </button>
 
-  <!-- Toggle: High contrast -->
-  <button class="a11y-toggle" id="tog-contrast"
-          onclick="a11yToggle('a11y-high-contrast', this)" aria-pressed="false">
-    <span class="toggle-pip"></span>
-    <span>ניגודיות גבוהה</span>
-    <span aria-hidden="true" style="font-size:1.2rem;margin-right:auto;margin-left:0.3rem;">◑</span>
-  </button>
-
-  <!-- Toggle: Underline links -->
-  <button class="a11y-toggle" id="tog-underline"
-          onclick="a11yToggle('a11y-underline-links', this)" aria-pressed="false">
-    <span class="toggle-pip"></span>
-    <span>הדגשת קישורים</span>
-    <span aria-hidden="true" style="font-size:0.95rem;text-decoration:underline;margin-right:auto;margin-left:0.3rem;">קישור</span>
-  </button>
-
-  <!-- Toggle: Readable font -->
-  <button class="a11y-toggle" id="tog-font"
-          onclick="a11yToggle('a11y-readable-font', this)" aria-pressed="false">
-    <span class="toggle-pip"></span>
-    <span>פונט קריא</span>
-    <span aria-hidden="true" style="font-size:0.75rem;font-family:Arial,sans-serif;margin-right:auto;margin-left:0.3rem;">Arial</span>
-  </button>
-
-  <!-- Reset -->
-  <button onclick="a11yReset()"
-          style="width:100%;margin-top:0.6rem;padding:0.42rem;border-radius:0.5rem;border:1px solid rgba(15,27,45,0.08);background:transparent;font-size:0.75rem;color:#9aabbb;cursor:pointer;font-family:'Manrope',sans-serif;transition:background 0.15s;"
-          onmouseover="this.style.background='#f8f7f4'" onmouseout="this.style.background='transparent'">
-    ↺ &nbsp;איפוס הגדרות
-  </button>
 </div>
 
 <!-- ══════════════════════════════════════════
